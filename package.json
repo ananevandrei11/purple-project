@@ -12,7 +12,9 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "framer-motion": "^10.16.5",
     "next": "14.0.3",
+    "next13-progressbar": "^1.1.0",
     "react": "^18",
     "react-dom": "^18"
   },

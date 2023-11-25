@@ -1,0 +1,22 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  font-family: var(--ff-secondary);
+  font-size: 7px;
+  font-weight: 400;
+  color: var(--light-colors-black-light, #000);
+  text-align: center;
+  background-color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 50%;
+}

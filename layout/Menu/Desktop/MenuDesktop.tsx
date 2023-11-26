@@ -19,50 +19,57 @@ export default function MenuDesktop({ className, ...props }: Props) {
   const currentPath = usePathname();
 
   return (
-    <nav className={clsx(styles.nav, className)} {...props}>
-      <div className={styles.main}>
-        {MAIN_LINK.map((link) => (
-          <Link
-            key={link.href}
-            aria-current={link.href === currentPath}
-            className={clsx(styles.link, {
-              [styles.active]: link.href === currentPath
-            })}
-            href={link.href}>
-            {link.text}
-          </Link>
-        ))}
-        <div className={clsx(styles.divider)} />
-      </div>
+    <div className={clsx(styles.root, className)} {...props}>
+      <div className={styles.wrapper}>
+        <Link href="/" className={styles.logo}>
+          SHOPPE
+        </Link>
+        <nav className={styles.nav}>
+          <div className={styles.main}>
+            {MAIN_LINK.map((link) => (
+              <Link
+                key={link.href}
+                aria-current={link.href === currentPath}
+                className={clsx(styles.link, {
+                  [styles.active]: link.href === currentPath
+                })}
+                href={link.href}>
+                {link.text}
+              </Link>
+            ))}
+            <span className={clsx(styles.divider)} />
+          </div>
 
-      <SearchHeader />
+          <SearchHeader />
 
-      <div className={styles.shop}>
-        <Link
-          aria-current={'/cart' === currentPath}
-          className={clsx(styles.linkIcon, {
-            [styles.active]: '/cart' === currentPath
-          })}
-          href="/cart">
-          <IconBadge icon="cart" />
-        </Link>
-        <Link
-          aria-current={'/favorites' === currentPath}
-          className={clsx(styles.linkIcon, {
-            [styles.active]: '/favorites' === currentPath
-          })}
-          href="/favorites">
-          <IconBadge icon="favorites" />
-        </Link>
-        <Link
-          aria-current={'/login' === currentPath}
-          className={clsx(styles.linkIcon, {
-            [styles.active]: '/login' === currentPath
-          })}
-          href="/login">
-          <Person />
-        </Link>
+          <div className={styles.shop}>
+            <Link
+              aria-current={'/cart' === currentPath}
+              className={clsx(styles.linkIcon, {
+                [styles.active]: '/cart' === currentPath
+              })}
+              href="/cart">
+              <IconBadge icon="cart" />
+            </Link>
+            <Link
+              aria-current={'/favorites' === currentPath}
+              className={clsx(styles.linkIcon, {
+                [styles.active]: '/favorites' === currentPath
+              })}
+              href="/favorites">
+              <IconBadge icon="favorites" />
+            </Link>
+            <Link
+              aria-current={'/login' === currentPath}
+              className={clsx(styles.linkIcon, {
+                [styles.active]: '/login' === currentPath
+              })}
+              href="/login">
+              <Person />
+            </Link>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 }

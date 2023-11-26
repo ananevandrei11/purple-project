@@ -8,5 +8,20 @@ import { Person } from './svg/Person';
 import { Search } from './svg/Search';
 import { Logo } from './svg/Logo';
 import { Burger } from './svg/Burger';
+import { Login } from './svg/Login';
+import { Close } from './svg/Close';
 
-export { LinkedIn, Facebook, Instagram, Twitter, Person, Favorites, Cart, Search, Logo, Burger };
+export {
+  LinkedIn,
+  Facebook,
+  Instagram,
+  Twitter,
+  Person,
+  Favorites,
+  Cart,
+  Search,
+  Logo,
+  Burger,
+  Login,
+  Close
+};

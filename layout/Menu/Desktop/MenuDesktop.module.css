@@ -1,3 +1,22 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-content: flex-start space-between;
+}
+
+.logo {
+  align-self: center;
+  font-family: var(--ff-secondary);
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.logo::first-letter {
+  color: var(--accent);
+}
+
 .nav {
   position: relative;
   display: flex;

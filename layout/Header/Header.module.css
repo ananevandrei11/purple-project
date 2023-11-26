@@ -1,25 +1,9 @@
 .header {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid var(--gray-border);
 }
 
-.logo {
-  font-family: var(--ff-secondary);
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px;
-}
-
-.logo::first-letter {
-  color: var(--accent);
-}
-
-.search {
-  display: none;
+.menuDesktop {
+  display: block;
 }
 
 .menuMobile {
@@ -28,13 +12,7 @@
 
 @media (width <= 1024px) {
   .header {
-    grid-template-columns: auto min-content;
-    row-gap: 16px;
     border-bottom: none;
-  }
-
-  .logo {
-    font-size: 25px;
   }
 
   .menuDesktop {
@@ -42,11 +20,6 @@
   }
 
   .menuMobile {
-    display: flex;
-  }
-
-  .search {
-    display: flex;
-    grid-column: 1 / -1;
+    display: block;
   }
 }

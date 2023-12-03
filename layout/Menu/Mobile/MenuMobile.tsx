@@ -4,6 +4,7 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { allertaStencil } from '@/fonts';
 import { Burger, Close, Login, Person } from '@/Icon';
 import { IconBadge, SearchHeader } from '@/components';
 import styles from './MenuMobile.module.css';
@@ -27,7 +28,7 @@ export default function MenuMobile({ className, ...props }: Props) {
       })}
       {...props}>
       <div className={styles.header}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={clsx(styles.logo, allertaStencil.className)}>
           SHOPPE
         </Link>
         <div className={styles.controls}>

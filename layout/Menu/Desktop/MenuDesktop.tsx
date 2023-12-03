@@ -4,9 +4,19 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { Allerta_Stencil } from 'next/font/google';
 import { Person } from '@/Icon';
 import { SearchHeader, IconBadge } from '@/components';
 import styles from './MenuDesktop.module.css';
+
+export const allertaStencil = Allerta_Stencil({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  weight: ['400'],
+  variable: '--font-allerta-stencil'
+});
 
 const MAIN_LINK = [
   { href: '/shop', text: 'Магазин' },
@@ -21,7 +31,7 @@ export default function MenuDesktop({ className, ...props }: Props) {
   return (
     <div className={clsx(styles.root, className)} {...props}>
       <div className={styles.wrapper}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={clsx(styles.logo, allertaStencil.className)}>
           SHOPPE
         </Link>
         <nav className={styles.nav}>

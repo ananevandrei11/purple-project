@@ -1,4 +1,7 @@
 import IconBadge from './IconBadge/IconBadge';
 import SearchHeader from './SearchHeader/SearchHeader';
+import TextElement from './TextElement/TextElement';
+import { InputGroup } from './Input/InputGroup';
+import { Input } from './Input/Input';
 
-export { IconBadge, SearchHeader };
+export { IconBadge, SearchHeader, TextElement, InputGroup, Input };

@@ -22,7 +22,7 @@ body {
 
 body {
   position: relative;
-  font-family: var(--ff);
+  font-family: var(--font-montserrat);
   color: var(--black);
 }
 
@@ -32,8 +32,9 @@ a {
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
   max-width: 1248px;
   min-height: inherit;
   padding: 48px 40px 72px;

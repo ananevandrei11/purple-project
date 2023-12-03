@@ -1,26 +1,7 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Allerta_Stencil } from 'next/font/google';
-import clsx from 'clsx';
-import { Header, ProgressBar } from '@/layout';
+import { Footer, Header, ProgressBar } from '@/layout';
+import { dmSans } from '@/fonts';
 import '@/styles/globals.css';
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  weight: ['400', '500', '700'],
-  variable: '--ff'
-});
-
-const allertaStencil = Allerta_Stencil({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  weight: ['400'],
-  variable: '--ff-secondary'
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -30,11 +11,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className={clsx(allertaStencil.className, dmSans.className)}>
+      <body className={dmSans.className}>
         <div className="wrapper">
           <ProgressBar />
           <Header />
           <main>{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

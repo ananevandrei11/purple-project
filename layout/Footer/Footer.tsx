@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { Facebook, Instagram, LinkedIn, Twitter } from '@/Icon';
@@ -29,7 +30,7 @@ export default function Footer() {
       console.warn('Поле обязательно для заполнения');
       return;
     }
-    console.log(email);
+    toast.success(`Email ${email} отправлен.`);
     setEmail('');
     return;
   };

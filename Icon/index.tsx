@@ -10,6 +10,7 @@ import { Logo } from './svg/Logo';
 import { Burger } from './svg/Burger';
 import { Login } from './svg/Login';
 import { Close } from './svg/Close';
+import { Check } from './svg/Check';
 
 export {
   LinkedIn,
@@ -23,5 +24,6 @@ export {
   Logo,
   Burger,
   Login,
-  Close
+  Close,
+  Check
 };

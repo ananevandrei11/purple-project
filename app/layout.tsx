@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Footer, Header, ProgressBar } from '@/layout';
 import { dmSans } from '@/fonts';
 import '@/styles/globals.css';
+import { Toasts } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
+          <Toasts />
         </div>
       </body>
     </html>

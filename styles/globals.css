@@ -1,11 +1,11 @@
 :root {
-  --ff: 'DM Sans';
   --white: #fff;
   --black: #000;
   --accent: #a18a68;
   --gray: #707070;
   --gray-light: #efefef;
   --gray-border: #d8d8d8;
+  --z-index-menu: 100;
 }
 
 * {
@@ -16,12 +16,33 @@
 
 html,
 body {
-  max-width: 100vw;
   min-height: 100dvh;
   overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  font-family: var(--font-montserrat);
+  color: var(--black);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  max-width: 1248px;
+  min-height: inherit;
+  padding: 48px 40px 72px;
+  margin: 0 auto;
+}
+
+@media (width <= 1024px) {
+  .wrapper {
+    padding: 4px 16px 22px;
+  }
 }

@@ -1,0 +1,25 @@
+.header {
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.menuDesktop {
+  display: block;
+}
+
+.menuMobile {
+  display: none;
+}
+
+@media (width <= 1024px) {
+  .header {
+    border-bottom: none;
+  }
+
+  .menuDesktop {
+    display: none;
+  }
+
+  .menuMobile {
+    display: block;
+  }
+}

@@ -1,15 +1,8 @@
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import { Footer, Header, ProgressBar } from '@/layout';
+import { dmSans } from '@/fonts';
 import '@/styles/globals.css';
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  weight: ['400', '500', '700'],
-  variable: '--ff'
-});
+import { Toasts } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +12,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className={dmSans.className}>{children}</body>
+      <body className={dmSans.className}>
+        <div className="wrapper">
+          <ProgressBar />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <Toasts />
+        </div>
+      </body>
     </html>
   );
 }

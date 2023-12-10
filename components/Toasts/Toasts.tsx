@@ -9,7 +9,7 @@ const Icons: Record<string, JSX.Element> = {
   success: <Check />
 };
 
-export default function Toasts() {
+export function Toasts() {
   return (
     <Toaster
       position="bottom-center"

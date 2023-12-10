@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  column-gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.input {
+  position: relative;
+  flex-shrink: 0;
+  width: 34px;
+  height: 20px;
+  margin-top: 3px;
+  appearance: none;
+  cursor: pointer;
+  background-color: var(--gray-light);
+  border: none;
+  border-radius: 12px;
+  transition: background-color var(--duration-slow);
+}
+
+.input::before {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  left: auto;
+  width: 16px;
+  height: 16px;
+  content: '';
+  background-color: var(--white);
+  border-radius: 50%;
+  transition:
+    left var(--duration-slow),
+    right var(--duration-slow);
+  transform: translateY(-50%);
+}
+
+.input:checked {
+  background-color: var(--gray);
+}
+
+.input:checked::before {
+  right: auto;
+  left: 4px;
+}
+
+.label {
+  flex: 1 0 auto;
+  cursor: pointer;
+}

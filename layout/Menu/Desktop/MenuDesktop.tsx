@@ -4,19 +4,10 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { Allerta_Stencil } from 'next/font/google';
 import { Person } from '@/Icon';
+import { allertaStencil } from '@/fonts';
 import { SearchHeader, IconBadge } from '@/components';
 import styles from './MenuDesktop.module.css';
-
-export const allertaStencil = Allerta_Stencil({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  weight: ['400'],
-  variable: '--font-allerta-stencil'
-});
 
 const MAIN_LINK = [
   { href: '/shop', text: 'Магазин' },

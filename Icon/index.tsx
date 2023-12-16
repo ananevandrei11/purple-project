@@ -12,6 +12,7 @@ import { Login } from './svg/Login';
 import { Close } from './svg/Close';
 import { Check } from './svg/Check';
 import { Expand } from './svg/Expand';
+import { ArrowRight } from './svg/Arrow';
 
 export {
   LinkedIn,
@@ -27,5 +28,6 @@ export {
   Login,
   Close,
   Check,
-  Expand
+  Expand,
+  ArrowRight
 };

@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  column-gap: 8px;
+}
+
+.btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--black);
+  background-color: var(--white);
+  border-radius: 4px;
+  border: 1px solid var(--gray-border);
+  cursor: pointer;
+}
+
+.current {
+  color: var(--white);
+  background-color: var(--black);
+}
+
+
+.arrow {
+  font-size: 10px;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
+
+.arrowHidden {
+  display: none;
+}

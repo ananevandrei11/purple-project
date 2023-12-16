@@ -1,4 +1,5 @@
-import { Select, SwitchCheckbox } from '@/components';
+'use client';
+import { Paginator, RangeSlider, Select, SwitchCheckbox } from '@/components';
 
 export default function Home(): JSX.Element {
   return (
@@ -16,6 +17,13 @@ export default function Home(): JSX.Element {
         ]}
       />
       <SwitchCheckbox name="discount" id="discount" label="Скидка" />
+      <RangeSlider />
+      <Paginator
+        disable={{ left: true, right: false }}
+        nav={{ current: 1, next: 2 }}
+        onNextPageClick={() => {}}
+        onPrevPageClick={() => {}}
+      />
     </div>
   );
 }

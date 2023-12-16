@@ -1,0 +1,15 @@
+.root {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.slider {
+  height: 10px;
+  padding: 4px 0;
+}
+
+.input {
+  display: none;
+  appearance: none;
+}

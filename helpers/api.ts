@@ -1,7 +1,4 @@
-const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
-
-export const DummyAPI = {
-  products: {
-    get: DOMAIN + '/products'
-  }
+export const API = {
+  products: '/products',
+  productsFilter: '/products/get-filter'
 };

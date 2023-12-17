@@ -1,29 +1,15 @@
-'use client';
-import { Paginator, RangeSlider, Select, SwitchCheckbox } from '@/components';
+import { getProducts } from '@/api';
+import { EmptyState } from '@/page-components';
+import Client from './client';
 
-export default function Home(): JSX.Element {
-  return (
-    <div>
-      Home
-      <br />
-      {/* EXAMPLE COMPONENT */}
-      <Select
-        name="category"
-        id="category"
-        options={[
-          { value: 'category', label: 'Категория' },
-          { value: '1', label: '1' },
-          { value: '2', label: '2' }
-        ]}
-      />
-      <SwitchCheckbox name="discount" id="discount" label="Скидка" />
-      <RangeSlider />
-      <Paginator
-        disable={{ left: true, right: false }}
-        nav={{ current: 1, next: 2 }}
-        onNextPageClick={() => {}}
-        onPrevPageClick={() => {}}
-      />
-    </div>
-  );
+export default async function Home(): Promise<JSX.Element> {
+  const productData = await getProducts();
+
+  if (!productData || productData?.products?.length === 0) {
+    return <EmptyState title="Товары не найдены" />;
+  }
+
+  const productsShow = productData.products.slice(0, 6);
+
+  return <Client products={productsShow} />;
 }

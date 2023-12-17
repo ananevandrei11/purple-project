@@ -5,7 +5,7 @@ import styles from './Select.module.css';
 
 interface Props
   extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  options: { value: string; label: string }[];
+  options: { value: string | number; label: string }[];
 }
 
 export function Select({ options, className, onClick, onBlur, onKeyDown, ...props }: Props) {

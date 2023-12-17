@@ -7,7 +7,22 @@ const nextConfig = {
       use: ['@svgr/webpack']
     });
     return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'purpleschool.ru',
+        pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-bucket.hb.ru-msk.vkcs.cloud',
+        pathname: '**'
+      }
+    ]
   }
+
   /*
   experimental: {
     turbo: {

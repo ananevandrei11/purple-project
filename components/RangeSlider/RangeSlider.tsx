@@ -5,8 +5,10 @@ import Slider, { SliderProps } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 interface Props extends SliderProps {
+  onRange?: (val: number[]) => void;
   defaultValue?: number[];
-  name?: string;
+  nameMin?: string;
+  nameMax?: string;
   id?: string;
 }
 
@@ -16,9 +18,9 @@ export function RangeSlider({
   step = 1,
   allowCross = false,
   defaultValue,
-  name = 'range-multi',
-  id = 'range-multi',
-  onChange,
+  nameMin = 'range-min',
+  nameMax = 'range-max',
+  onRange,
   className,
   ...props
 }: Props) {
@@ -28,7 +30,7 @@ export function RangeSlider({
   const handleChange = ({ val }: { val: number[] }) => {
     setValueMin(val[0]);
     setValueMax(val[1]);
-    onChange?.(val);
+    onRange?.(val);
   };
 
   return (
@@ -73,8 +75,8 @@ export function RangeSlider({
       />
       <input
         type="range"
-        name={`${name}-min`}
-        id={`${id}-min`}
+        name={nameMin}
+        id={nameMin}
         min={min}
         max={max}
         step={step || 1}
@@ -84,8 +86,8 @@ export function RangeSlider({
       />
       <input
         type="range"
-        name={`${name}-max`}
-        id={`${id}-max`}
+        name={nameMax}
+        id={nameMax}
         min={min}
         max={max}
         step={step || 1}

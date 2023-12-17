@@ -6,16 +6,25 @@ import { TextElement } from '..';
 interface Props {
   onNextPageClick: () => void;
   onPrevPageClick: () => void;
+  onPageClick: (page: number) => void;
+  currentPage: number;
   disable: {
     left: boolean;
     right: boolean;
   };
   nav: {
-    current: number;
-    next: number;
+    first: number;
+    second: number;
   };
 }
-export function Paginator({ nav, disable, onNextPageClick, onPrevPageClick }: Props) {
+export function Paginator({
+  nav,
+  currentPage,
+  disable,
+  onPageClick,
+  onNextPageClick,
+  onPrevPageClick
+}: Props) {
   return (
     <div className={styles.root}>
       <button
@@ -27,14 +36,20 @@ export function Paginator({ nav, disable, onNextPageClick, onPrevPageClick }: Pr
         disabled={disable.left}>
         <ArrowRight className={styles.arrowLeft} />
       </button>
-      <button type="button" onClick={onPrevPageClick} className={clsx(styles.btn, styles.current)}>
+      <button
+        type="button"
+        onClick={() => onPageClick(nav.first)}
+        className={clsx(styles.btn, currentPage === nav.first && styles.current)}>
         <TextElement variant="bodyMedium" tag="span">
-          {nav.current}
+          {nav.first}
         </TextElement>
       </button>
-      <button type="button" onClick={onNextPageClick} className={styles.btn}>
+      <button
+        type="button"
+        onClick={() => onPageClick(nav.second)}
+        className={clsx(styles.btn, currentPage === nav.second && styles.current)}>
         <TextElement variant="bodyMedium" tag="span">
-          {nav.next}
+          {nav.second}
         </TextElement>
       </button>
       <button
@@ -43,7 +58,7 @@ export function Paginator({ nav, disable, onNextPageClick, onPrevPageClick }: Pr
         })}
         type="button"
         onClick={onNextPageClick}
-        disabled={disable.left}>
+        disabled={disable.right}>
         <ArrowRight />
       </button>
     </div>

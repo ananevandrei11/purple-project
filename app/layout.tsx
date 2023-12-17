@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="wrapper">
           <ProgressBar />
           <Header />
-          <main>{children}</main>
+          <main className="main">{children}</main>
           <Footer />
           <Toasts />
         </div>

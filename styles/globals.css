@@ -35,15 +35,25 @@ a {
 .wrapper {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
+  width: 100%;
   max-width: 1248px;
   min-height: inherit;
   padding: 48px 40px 72px;
   margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.main {
+  padding: 96px 0;
 }
 
 @media (width <= 1024px) {
   .wrapper {
     padding: 4px 16px 22px;
+  }
+
+  .main {
+    padding: 36px 0;
   }
 }

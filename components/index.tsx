@@ -8,6 +8,8 @@ import { Select } from './Select/Select';
 import { SwitchCheckbox } from './SwitchCheckbox/SwitchCheckbox';
 import { RangeSlider } from './RangeSlider/RangeSlider';
 import { Paginator } from './Paginator/Paginator';
+import { ProductCard } from './ProductCard/ProductCard';
+import { Button } from './Button/Button';
 
 export {
   IconBadge,
@@ -19,5 +21,7 @@ export {
   Select,
   SwitchCheckbox,
   RangeSlider,
-  Paginator
+  Paginator,
+  ProductCard,
+  Button
 };

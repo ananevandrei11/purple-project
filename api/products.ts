@@ -5,9 +5,9 @@ import { apiStore } from '@/config/apiStore';
 interface Params extends IParamsProducts {}
 
 export function getProductsByUniqueSku(list: IProduct[]): IProduct[] {
-  const resultProducts = [] as IProduct[];
+  const resultProducts: IProduct[] = [];
 
-  list.reduce((acc, product) => {
+  list.reduce<number[]>((acc, product) => {
     const uniqueSku = acc.find((sku) => product.sku === sku);
 
     if (!uniqueSku) {
@@ -15,7 +15,7 @@ export function getProductsByUniqueSku(list: IProduct[]): IProduct[] {
       resultProducts.push(product);
     }
     return acc;
-  }, [] as number[]);
+  }, []);
 
   return resultProducts;
 }

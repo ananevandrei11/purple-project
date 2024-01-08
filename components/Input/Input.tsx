@@ -1,3 +1,4 @@
+'use client';
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import styles from './Input.module.css';

@@ -23,3 +23,8 @@
 .success .icon {
   color: var(--accent);
 }
+
+.error {
+  color: var(--white);
+  background: var(--black);
+}

@@ -1,0 +1,30 @@
+.root {
+  display: grid;
+  grid-template-areas:
+    'head head'
+    'filter products';
+  grid-template-columns: 260px 1fr;
+  gap: 40px 36px;
+}
+
+@media (width <= 1024px) {
+  .root {
+    grid-template-areas:
+      'head'
+      'filter'
+      'products';
+    grid-template-columns: 1fr;
+  }
+}
+
+.head {
+  grid-area: head;
+}
+
+.filter {
+  grid-area: filter;
+}
+
+.products {
+  grid-area: products;
+}

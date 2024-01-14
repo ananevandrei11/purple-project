@@ -1,0 +1,25 @@
+.rating {
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 10px;
+}
+
+.star {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.editable {
+  cursor: pointer;
+}
+
+.fill {
+  color: var(--black);
+}
+
+.pure {
+  color: var(--white);
+}

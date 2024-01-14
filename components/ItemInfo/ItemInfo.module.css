@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  column-gap: 16px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.info {
+  color: var(--gray);
+}

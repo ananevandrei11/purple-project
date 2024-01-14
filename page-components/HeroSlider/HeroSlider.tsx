@@ -52,11 +52,8 @@ export function HeroSlider({ products, className }: Props) {
                 <TextElement variant={mobile ? 'bodyMedium' : 'heading4'}>
                   {getPriceWithCurrency({ price: product.price })}
                 </TextElement>
-                <Link
-                  className={styles.link}
-                  href={`/product/sku/${product.sku}`}
-                  as={`/product/${product.name.replaceAll(' ', '-').toLowerCase()}`}>
-                  Смотреть
+                <Link className={styles.link} href={`/shop/${product.sku}`}>
+                  Смотреть {product.sku}
                 </Link>
               </div>
             </div>

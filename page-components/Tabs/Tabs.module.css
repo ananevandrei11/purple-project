@@ -1,0 +1,21 @@
+.desktop {
+  display: block;
+  visibility: visible;
+}
+
+.mobile {
+  display: none;
+  visibility: hidden;
+}
+
+@media (width <= 1024px) {
+  .desktop {
+    display: none;
+    visibility: hidden;
+  }
+
+  .mobile {
+    display: block;
+    visibility: visible;
+  }
+}

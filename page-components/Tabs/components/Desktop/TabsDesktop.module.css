@@ -1,0 +1,42 @@
+.nav {
+  display: flex;
+  column-gap: 82px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.active::before {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-color: var(--black);
+}
+
+.body {
+  padding: 36px 0;
+}
+
+.item {
+  display: none;
+}
+
+.open {
+  display: block;
+}

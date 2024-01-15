@@ -6,3 +6,4 @@ export { EmptyState } from './EmptyState/EmptyState';
 export { HeroSlider } from './HeroSlider/HeroSlider';
 export { ProductDescription } from './ProductDescription/ProductDescription';
 export { Rating } from './Rating/Rating';
+export { TabsWrapper as Tabs } from './Tabs/Tabs';

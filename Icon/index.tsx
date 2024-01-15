@@ -12,7 +12,7 @@ import { Login } from './svg/Login';
 import { Close } from './svg/Close';
 import { Check } from './svg/Check';
 import { Expand } from './svg/Expand';
-import { ArrowRight } from './svg/Arrow';
+import { ArrowRight, ArrowDown } from './svg/Arrow';
 import { Eye } from './svg/Eye';
 import { Rating as RatingIcon } from './svg/Rating';
 import { Share as ShareIcon } from './svg/Share';
@@ -36,5 +36,6 @@ export {
   Eye,
   FavoritesFull,
   RatingIcon,
-  ShareIcon
+  ShareIcon,
+  ArrowDown
 };

@@ -1,6 +1,6 @@
 import type { IFilter, IProduct } from '@/interfaces';
 import styles from './client.module.css';
-import { ProductDescription } from '@/page-components';
+import { ProductDescription, Tabs } from '@/page-components';
 
 interface Props {
   product: IProduct;
@@ -12,6 +12,7 @@ export function Client({ product, categories }: Props) {
     <div className={styles.root}>
       <section>Gallery</section>
       <ProductDescription product={product} categories={categories} />
+      <Tabs product={product} />
     </div>
   );
 }

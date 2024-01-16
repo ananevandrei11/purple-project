@@ -36,7 +36,15 @@
   max-height: 0;
   padding: 0;
   overflow: hidden;
-  transition: height var(--duration-slow), padding var(--duration-slow);
+  transition:
+    height var(--duration-slow),
+    padding var(--duration-slow);
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  row-gap: 36px;
 }
 
 .open .arrow {

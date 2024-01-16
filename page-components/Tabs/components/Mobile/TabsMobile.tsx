@@ -3,16 +3,17 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import clsx from 'clsx';
 import { IProduct } from '@/interfaces';
 import { TextElement } from '@/components';
+import { ArrowDown } from '@/Icon';
+import { ReviewForm, ReviewOutput } from '@/page-components';
 
 import styles from './TabsMobile.module.css';
-import { ArrowDown } from '@/Icon';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct;
 }
 
 export function TabsMobile({ product, className }: Props) {
-  const { reviews, description } = product;
+  const { reviews, description, sku } = product;
   const [isOpen, setOpen] = useState<{ reviews: boolean; description: boolean }>({
     reviews: false,
     description: false
@@ -52,10 +53,9 @@ export function TabsMobile({ product, className }: Props) {
             <ArrowDown />
           </span>
         </button>
-        <div id="reviews" className={styles.content}>
-          Item 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut sapiente expedita,
-          repellat suscipit, quibusdam magnam, nesciunt a reiciendis perferendis soluta nisi error
-          possimus? Rerum error nihil unde itaque optio omnis?
+        <div id="reviews" className={clsx(styles.content, styles.reviews)}>
+          <ReviewOutput reviews={reviews} />
+          <ReviewForm sku={sku} />
         </div>
       </div>
     </section>

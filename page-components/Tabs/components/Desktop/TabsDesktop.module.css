@@ -40,3 +40,9 @@
 .open {
   display: block;
 }
+
+.reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+}

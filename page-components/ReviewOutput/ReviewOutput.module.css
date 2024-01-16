@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  list-style: none;
+}
+
+.review {
+  display: grid;
+  grid-template-areas:
+    'name date'
+    'rating rating'
+    'description description';
+  grid-template-columns: auto 1fr;
+  gap: 24px 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.review:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.name {
+  grid-area: name;
+}
+
+.date {
+  grid-area: date;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.description {
+  grid-area: description;
+}

@@ -1,5 +1,5 @@
 'use client';
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes, forwardRef } from 'react';
 import clsx from 'clsx';
 import styles from './Input.module.css';
 
@@ -8,14 +8,19 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
   isAddonRight?: boolean;
 }
 
-export function Input({ className, isAddonLeft, isAddonRight, ...props }: Props) {
-  return (
-    <input
-      className={clsx(styles.input, className, {
-        [styles.addonLeft]: isAddonLeft,
-        [styles.addonRight]: isAddonRight
-      })}
-      {...props}
-    />
-  );
-}
+export const Input = forwardRef<HTMLInputElement, Props>(
+  ({ className, isAddonLeft, isAddonRight, ...props }, ref) => {
+    return (
+      <input
+        ref={ref}
+        className={clsx(styles.input, className, {
+          [styles.addonLeft]: isAddonLeft,
+          [styles.addonRight]: isAddonRight
+        })}
+        {...props}
+      />
+    );
+  }
+);
+
+Input.displayName = 'Input';

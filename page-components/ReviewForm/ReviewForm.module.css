@@ -1,0 +1,22 @@
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  row-gap: 46px;
+  align-items: stretch;
+  border: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.btn {
+  width: fit-content;
+}

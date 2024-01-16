@@ -3,6 +3,7 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import clsx from 'clsx';
 import { IProduct } from '@/interfaces';
 import { TextElement } from '@/components';
+import { ReviewForm, ReviewOutput } from '@/page-components';
 
 import styles from './TabsDesktop.module.css';
 
@@ -11,7 +12,7 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 }
 
 export function TabsDesktop({ product, className }: Props) {
-  const { reviews, description } = product;
+  const { reviews, description, sku } = product;
   const [currentItem, setCurrentItem] = useState<string>('description');
   const isDescription = currentItem === 'description';
   const isReviews = currentItem === 'reviews';
@@ -45,9 +46,10 @@ export function TabsDesktop({ product, className }: Props) {
           <TextElement variant="heading3">{description}</TextElement>
         </div>
         <div id="reviews" className={clsx(styles.item, { [styles.open]: isReviews })}>
-          Item 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut sapiente expedita,
-          repellat suscipit, quibusdam magnam, nesciunt a reiciendis perferendis soluta nisi error
-          possimus? Rerum error nihil unde itaque optio omnis?
+          <div className={styles.reviews}>
+            <ReviewOutput reviews={reviews} />
+            <ReviewForm sku={sku} />
+          </div>
         </div>
       </div>
     </section>

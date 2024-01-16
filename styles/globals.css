@@ -5,6 +5,7 @@
   --gray: #707070;
   --gray-light: #efefef;
   --gray-border: #d8d8d8;
+  --error: #f00;
   --z-index-menu: 100;
   --duration-slow: 300ms;
 }

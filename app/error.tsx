@@ -1,5 +1,4 @@
 'use client';
-
 import { Button, TextElement } from '@/components';
 import { useEffect } from 'react';
 

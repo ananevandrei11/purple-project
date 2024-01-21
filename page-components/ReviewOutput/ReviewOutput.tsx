@@ -12,7 +12,6 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 }
 
 export function ReviewOutput({ reviews, className }: Props) {
-  console.log(reviews);
   if (reviews.length === 0) {
     return <div className={className}>Отзывы отсутствуют</div>;
   }

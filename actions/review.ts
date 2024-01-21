@@ -5,7 +5,6 @@ import { IReviewBody, IReviewResponse } from '@/interfaces';
 
 export async function setReview({ data, sku }: { sku: number; data: Required<IReviewBody> }) {
   try {
-    throw new Error('Missing sku');
     if (!sku) {
       throw new Error('Missing sku');
     }

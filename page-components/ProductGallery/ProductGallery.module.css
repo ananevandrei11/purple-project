@@ -1,0 +1,51 @@
+.root {
+  display: grid;
+  grid-template-columns:
+    15%
+    75%;
+  column-gap: 40px;
+}
+
+.embla {
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-auto-columns: 100%;
+  grid-auto-flow: column;
+  column-gap: 10px;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 10;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 2px;
+  margin-top: 24px;
+  background-color: var(--gray-border);
+}
+
+.progress {
+  background-color: var(--gray);
+}
+
+@media (width <= 1024px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbs {
+    display: none;
+  }
+
+  .slide {
+    max-height: 375px;
+  }
+}

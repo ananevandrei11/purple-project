@@ -1,0 +1,24 @@
+.thumbs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+.item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+}
+
+.img {
+  border-radius: 8px;
+}
+
+.active {
+  box-shadow: 0 0 0 1px var(--accent);
+}

@@ -10,3 +10,4 @@ export { TabsWrapper as Tabs } from './Tabs/Tabs';
 export { ReviewOutput } from './ReviewOutput/ReviewOutput';
 export { ReviewForm } from './ReviewForm/ReviewForm';
 export { ProductGallery } from './ProductGallery/ProductGallery';
+export { Error } from './Error/Error';

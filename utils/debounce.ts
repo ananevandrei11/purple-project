@@ -1,6 +1,6 @@
-export function debounce(func: (...args: unknown[]) => void, wait: number) {
+export function debounce<T>(func: (...args: T[]) => void, wait: number) {
   let timeout: NodeJS.Timeout | null = null;
-  return function executedFunction(...args: unknown[]) {
+  return function executedFunction(...args: T[]) {
     const later = () => {
       if (timeout) clearTimeout(timeout);
       func(...args);

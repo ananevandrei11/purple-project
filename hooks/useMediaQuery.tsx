@@ -8,7 +8,7 @@ export function useMediaQuery(query: string): boolean {
     return false;
   };
 
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
+  const [matches, setMatches] = useState(getMatches(query));
 
   function handleChange() {
     setMatches(getMatches(query));

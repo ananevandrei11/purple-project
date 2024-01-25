@@ -4,11 +4,11 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { IFilter, IProduct } from '@/interfaces';
 import { Button, Counter, IconBadge, ItemInfo, TextElement } from '@/components';
-import { ArrowRight, Facebook, Instagram, LinkedIn, ShareIcon, Twitter } from '@/Icon';
+import { ArrowRight, Facebook, Instagram, LinkedIn, Share, Twitter } from '@/Icon';
 import { getPriceWithCurrency, pluralize } from '@/utils';
 
+import { RatingStars } from '..';
 import styles from './ProductDescription.module.css';
-import { Rating } from '..';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct;
@@ -26,9 +26,9 @@ const SOCIAL_LINK = [
 export function ProductDescription({ product, categories, className }: Props) {
   const { name, description, price, reviews, sku, categoryId } = product;
   const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
-  const [count, setCount] = useState<number>(1);
-  const [isShowShare, setShowShare] = useState<boolean>(true);
-  const [isShowMore, setShowMore] = useState<boolean>(true);
+  const [count, setCount] = useState(1);
+  const [isShowShare, setShowShare] = useState(true);
+  const [isShowMore, setShowMore] = useState(true);
 
   return (
     <section className={clsx(styles.root, className)}>
@@ -43,7 +43,7 @@ export function ProductDescription({ product, categories, className }: Props) {
           type="button"
           className={clsx(styles.btn, styles.shareBtn)}
           onClick={() => setShowShare((prev) => !prev)}>
-          <ShareIcon />
+          <Share />
         </button>
       </div>
 
@@ -51,7 +51,7 @@ export function ProductDescription({ product, categories, className }: Props) {
         className={clsx(styles.rating, {
           [styles.collapsed]: isShowMore
         })}>
-        <Rating rating={averageRating} className={styles.star} />
+        <RatingStars rating={averageRating} className={styles.star} />
         <TextElement variant="heading5" tag="p" className={styles.reviews}>
           {pluralize(reviews.length, ['отзыв', 'отзыва', 'отзывов'])}
         </TextElement>
@@ -66,8 +66,8 @@ export function ProductDescription({ product, categories, className }: Props) {
 
       <Counter
         value={count}
-        onDecrease={() => setCount(count - 1)}
-        onIncrease={() => setCount(count + 1)}
+        onDecrease={() => setCount((prev) => prev - 1)}
+        onIncrease={() => setCount((prev) => prev + 1)}
         max={MAX_COUNT}
         className={clsx(styles.counter, {
           [styles.collapsed]: isShowMore

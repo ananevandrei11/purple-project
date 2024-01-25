@@ -13,7 +13,7 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export function TabsDesktop({ product, className }: Props) {
   const { reviews, description, sku } = product;
-  const [currentItem, setCurrentItem] = useState<string>('description');
+  const [currentItem, setCurrentItem] = useState('description');
   const isDescription = currentItem === 'description';
   const isReviews = currentItem === 'reviews';
 

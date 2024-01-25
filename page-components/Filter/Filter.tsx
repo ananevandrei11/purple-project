@@ -27,7 +27,7 @@ export function Filter({ filter, className }: Props) {
   const [search, setSearch] = useState<string>();
   const [prices, setPrices] = useState<number[]>([minPrice, maxPrice]);
   const [discounted, setDiscounted] = useState<'true' | undefined>(undefined);
-  const [categoryId, setCategoryId] = useState<string>('');
+  const [categoryId, setCategoryId] = useState('');
 
   const options = categories.map((opt) => ({ value: opt.id, label: opt.name }));
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {

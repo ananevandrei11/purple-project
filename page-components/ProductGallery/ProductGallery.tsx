@@ -19,7 +19,7 @@ export function ProductGallery({ slides, className, ...props }: Props) {
     containScroll: 'keepSnaps',
     skipSnaps: true
   });
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const updateCurrent = useCallback(() => {
     if (!emblaApi) return;

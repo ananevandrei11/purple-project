@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { IProduct } from '@/interfaces';
 import styles from './ReviewOutput.module.css';
 import { TextElement } from '@/components';
-import { Rating } from '..';
+import { RatingStars } from '..';
 import { getDateIntl } from '@/utils';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -25,7 +25,7 @@ export function ReviewOutput({ reviews, className }: Props) {
           <TextElement variant="bodyMedium" className={styles.date}>
             {getDateIntl({ date: new Date(review?.date) })}
           </TextElement>
-          <Rating rating={review.rating} className={styles.rating} />
+          <RatingStars rating={review.rating} className={styles.rating} />
           <TextElement variant="heading5" className={styles.description}>
             {review?.description}
           </TextElement>

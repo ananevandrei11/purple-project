@@ -7,7 +7,7 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
   label?: string | JSX.Element;
 }
 
-export function SwitchCheckbox({ id, label, className, ...props }: Omit<Props, 'variant'>) {
+export function SwitchCheckbox({ id, label, className, ...props }: Props) {
   return (
     <div className={clsx(className, styles.root)}>
       {label && (

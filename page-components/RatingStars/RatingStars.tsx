@@ -10,8 +10,8 @@ import {
   Fragment
 } from 'react';
 import clsx from 'clsx';
-import { RatingIcon } from '@/Icon';
-import styles from './Rating.module.css';
+import { Rating } from '@/Icon';
+import styles from './RatingStars.module.css';
 
 export interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   isEditable?: boolean;
@@ -19,7 +19,7 @@ export interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,
   setRating?: (rating: number) => void;
 }
 
-export const Rating = forwardRef(
+export const RatingStars = forwardRef(
   (
     { isEditable = false, rating, setRating, className, ...props }: Props,
     ref: ForwardedRef<HTMLDivElement>
@@ -83,7 +83,7 @@ export const Rating = forwardRef(
             aria-valuemax={5}
             aria-valuemin={1}
             onKeyDown={(e: KeyboardEvent<HTMLElement>) => onKeyChangeRating(e, i + 1)}>
-            <RatingIcon
+            <Rating
               className={clsx({
                 [styles.fill]: i < currentRating,
                 [styles.pure]: i >= currentRating,
@@ -112,4 +112,4 @@ export const Rating = forwardRef(
   }
 );
 
-Rating.displayName = 'Rating';
+RatingStars.displayName = 'RatingStars';

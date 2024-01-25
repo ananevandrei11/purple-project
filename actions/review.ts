@@ -3,7 +3,7 @@ import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { IReviewBody, IReviewResponse } from '@/interfaces';
 
-export async function setReview({ data, sku }: { sku: number; data: Required<IReviewBody> }) {
+export async function sendReview({ data, sku }: { sku: number; data: Required<IReviewBody> }) {
   try {
     if (!sku) {
       throw new Error('Missing sku');

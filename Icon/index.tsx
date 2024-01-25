@@ -14,8 +14,8 @@ import { Check } from './svg/Check';
 import { Expand } from './svg/Expand';
 import { ArrowRight, ArrowDown } from './svg/Arrow';
 import { Eye } from './svg/Eye';
-import { Rating as RatingIcon } from './svg/Rating';
-import { Share as ShareIcon } from './svg/Share';
+import { Rating } from './svg/Rating';
+import { Share } from './svg/Share';
 
 export {
   LinkedIn,
@@ -35,7 +35,7 @@ export {
   ArrowRight,
   Eye,
   FavoritesFull,
-  RatingIcon,
-  ShareIcon,
+  Rating,
+  Share,
   ArrowDown
 };

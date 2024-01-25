@@ -10,7 +10,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: { params: { sku: string } }) {
+interface Props {
+  params: { sku: string };
+}
+
+export default async function Page({ params }: Props) {
   const { sku } = params;
   const productData = await getProductBySku({ sku });
 

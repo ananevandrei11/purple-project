@@ -5,10 +5,10 @@ import { z } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, InputGroup, TextElement } from '@/components';
-import { setReview } from '@/actions/review';
+import { sendReview } from '@/actions/review';
 
 import styles from './ReviewForm.module.css';
-import { Rating } from '..';
+import { RatingStars } from '..';
 import toast from 'react-hot-toast';
 import { emailSchema, stringRequiredSchema } from '@/schemas';
 
@@ -46,7 +46,7 @@ export function ReviewForm({ sku, className, ...props }: Props) {
     if (!isValid) {
       return null;
     }
-    const response = await setReview({ data, sku });
+    const response = await sendReview({ data, sku });
     if (response.success) {
       toast.success(response?.message);
     } else if (!response.success) {
@@ -103,7 +103,7 @@ export function ReviewForm({ sku, className, ...props }: Props) {
             name="rating"
             control={control}
             render={({ field: { value, onChange } }) => (
-              <Rating rating={value} setRating={onChange} isEditable />
+              <RatingStars rating={value} setRating={onChange} isEditable />
             )}
           />
           {errors.rating && <InputGroup.Error>{errors.rating?.message}</InputGroup.Error>}

@@ -5,7 +5,7 @@ export { LoadingFull } from './LoadingFull/LoadingFull';
 export { EmptyState } from './EmptyState/EmptyState';
 export { HeroSlider } from './HeroSlider/HeroSlider';
 export { ProductDescription } from './ProductDescription/ProductDescription';
-export { Rating } from './Rating/Rating';
+export { RatingStars } from './RatingStars/RatingStars';
 export { TabsWrapper as Tabs } from './Tabs/Tabs';
 export { ReviewOutput } from './ReviewOutput/ReviewOutput';
 export { ReviewForm } from './ReviewForm/ReviewForm';

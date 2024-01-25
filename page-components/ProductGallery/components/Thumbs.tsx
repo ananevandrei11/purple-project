@@ -21,7 +21,16 @@ export const Thumbs = ({ slides, activeItem, onThumbsClick, className, ...props 
           className={clsx(styles.item, { [styles.active]: index === activeItem })}
           key={uuidv4()}
           onClick={() => onThumbsClick(index)}>
-          <Image fill src={item} alt=" " objectFit="cover" className={styles.img} />
+          <Image
+            fill
+            src={item}
+            alt=" "
+            quality={75}
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            placeholder="blur"
+            blurDataURL={item}
+            className={styles.img}
+          />
         </button>
       ))}
     </div>

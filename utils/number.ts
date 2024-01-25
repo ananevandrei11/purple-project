@@ -13,3 +13,10 @@ export function getPriceWithCurrency({
 }) {
   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(price);
 }
+
+export function getPriceWithDiscount({ price, discount }: { price: number; discount?: number }) {
+  if (!discount) {
+    return price;
+  }
+  return price * (1 - discount * 0.01);
+}

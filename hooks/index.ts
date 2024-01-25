@@ -1,3 +1,2 @@
-import { useMediaQuery } from './useMediaQuery';
-
-export { useMediaQuery };
+export { useMediaQuery } from './useMediaQuery';
+export { useDebounce } from './useDebounce';

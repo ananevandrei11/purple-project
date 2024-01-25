@@ -48,7 +48,16 @@ export function ProductGallery({ slides, className, ...props }: Props) {
         <div className={styles.container}>
           {slides.map((item, index) => (
             <div className={styles.slide} key={uuidv4()} aria-label={`slide-${index}`}>
-              <Image fill objectFit="cover" objectPosition="bottom" src={item} alt=" " />
+              <Image
+                fill
+                src={item}
+                quality={75}
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                placeholder="blur"
+                blurDataURL={item}
+                alt=" "
+                className={styles.img}
+              />
             </div>
           ))}
         </div>

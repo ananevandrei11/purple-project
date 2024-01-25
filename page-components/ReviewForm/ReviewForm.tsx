@@ -10,17 +10,15 @@ import { setReview } from '@/actions/review';
 import styles from './ReviewForm.module.css';
 import { Rating } from '..';
 import toast from 'react-hot-toast';
+import { emailSchema, stringRequiredSchema } from '@/schemas';
 
 interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   sku: number;
 }
 
 export const reviewSchema = z.object({
-  name: z
-    .string({ required_error: 'Обязательное поле', invalid_type_error: 'Должен быть строкой' })
-    .min(1, 'Обязательное поле')
-    .trim(),
-  email: z.string().email('Некорректный email').trim(),
+  name: stringRequiredSchema,
+  email: emailSchema,
   rating: z.number().positive({ message: 'Обязательное поле' }),
   review: z
     .string({ required_error: 'Обязательное поле', invalid_type_error: 'Должен быть строкой' })

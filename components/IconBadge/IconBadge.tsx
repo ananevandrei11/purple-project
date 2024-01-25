@@ -5,7 +5,7 @@ import styles from './IconBadge.module.css';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   icon: 'cart' | 'favorites';
-  badge?: string;
+  badge?: string | number;
 }
 
 const ICON: Record<string, JSX.Element> = {

@@ -8,6 +8,7 @@ import { getPriceWithCurrency } from '@/utils';
 import { TextElement } from '..';
 import styles from './ProductCard.module.css';
 import { Cart, Eye, Favorites, FavoritesFull } from '@/Icon';
+import { useCartContext } from '@/context/cartContext';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct;
@@ -16,6 +17,7 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export function ProductCard({ product, isFavorites, className, ...props }: Props) {
   const { name, price, images, discount, sku } = product;
+  const { addItemToCart } = useCartContext();
 
   return (
     <div className={clsx(styles.card, className)} {...props}>
@@ -31,7 +33,15 @@ export function ProductCard({ product, isFavorites, className, ...props }: Props
           </span>
         )}
         <div className={styles.hover}>
-          <button type="button" className={styles.hoverBtn}>
+          <button
+            type="button"
+            className={styles.hoverBtn}
+            onClick={() =>
+              addItemToCart({
+                ...product,
+                count: 1
+              })
+            }>
             <Cart />
           </button>
           <Link href={`/shop/${sku}`}>

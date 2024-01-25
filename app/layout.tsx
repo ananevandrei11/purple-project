@@ -3,6 +3,7 @@ import { Footer, Header, ProgressBar } from '@/layout';
 import { dmSans } from '@/fonts';
 import '@/styles/globals.css';
 import { Toasts } from '@/components';
+import { CartProvider } from '@/context/cartContext';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,10 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={dmSans.className}>
         <div className="wrapper">
           <ProgressBar />
-          <Header />
-          <main className="main">{children}</main>
-          <Footer />
-          <Toasts />
+          <CartProvider>
+            <Header />
+            <main className="main">{children}</main>
+            <Footer />
+            <Toasts />
+          </CartProvider>
         </div>
       </body>
     </html>

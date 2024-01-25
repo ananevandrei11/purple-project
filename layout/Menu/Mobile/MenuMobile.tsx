@@ -4,6 +4,7 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { useCartContext } from '@/context/cartContext';
 import { allertaStencil } from '@/fonts';
 import { Burger, Close, Login, Person } from '@/Icon';
 import { IconBadge, SearchHeader } from '@/components';
@@ -19,6 +20,7 @@ const MAIN_LINK = [
 
 export default function MenuMobile({ className, ...props }: Props) {
   const currentPath = usePathname();
+  const { state } = useCartContext();
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -33,7 +35,11 @@ export default function MenuMobile({ className, ...props }: Props) {
         </Link>
         <div className={styles.controls}>
           <Link aria-current={'/cart' === currentPath} className={styles.link} href="/cart">
-            <IconBadge icon="cart" className={styles.icon} />
+            <IconBadge
+              icon="cart"
+              className={styles.icon}
+              badge={state.items.length ? state.items.length : undefined}
+            />
           </Link>
           <button className={styles.burger} onClick={() => setShowMenu((prev) => !prev)}>
             {isShowMenu ? <Close /> : <Burger />}

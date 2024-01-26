@@ -23,6 +23,11 @@
   aspect-ratio: 9 / 10;
 }
 
+.img {
+  object-fit: cover;
+  object-position: bottom;
+}
+
 .bar {
   display: flex;
   flex-direction: row;

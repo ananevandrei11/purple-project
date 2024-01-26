@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useCartContext } from '@/context/cartContext';
+import { useFavorites } from '@/state/localStorage';
 import { allertaStencil } from '@/fonts';
 import { Burger, Close, Login, Person } from '@/Icon';
 import { IconBadge, SearchHeader } from '@/components';
@@ -21,6 +22,7 @@ const MAIN_LINK = [
 export default function MenuMobile({ className, ...props }: Props) {
   const currentPath = usePathname();
   const { state } = useCartContext();
+  const { favorites } = useFavorites();
   const [isShowMenu, setShowMenu] = useState<boolean>(false);
 
   return (
@@ -75,7 +77,12 @@ export default function MenuMobile({ className, ...props }: Props) {
           aria-current={'/favorites' === currentPath}
           className={clsx(styles.link, styles.linkMenu)}
           href="/favorites">
-          <IconBadge icon="favorites" className={styles.icon} /> Избранное
+          <IconBadge
+            icon="favorites"
+            className={styles.icon}
+            badge={favorites.length ? favorites.length : undefined}
+          />{' '}
+          Избранное
         </Link>
         <Link
           aria-current={'/login' === currentPath}

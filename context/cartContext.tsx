@@ -69,7 +69,7 @@ const cartReducer = (state: ICartState, action: ICartAction): ICartState => {
   }
 };
 
-export const CartProvider = ({ children }: PropsWithChildren) => {
+export const CartProvider = ({ children }: PropsWithChildren<null>) => {
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
 
   return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
@@ -83,7 +83,12 @@ export const useCartContext = () => {
   const { state, dispatch } = context;
 
   const addItemToCart = (item: ICartItem) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
+    const itemSku = state.items.find((i) => i.sku === item.sku);
+    if (itemSku) {
+      dispatch({ type: 'REMOVE_ITEM', payload: item.sku });
+    } else {
+      dispatch({ type: 'ADD_ITEM', payload: item });
+    }
   };
 
   const removeItemFromCart = (sku: number) => {

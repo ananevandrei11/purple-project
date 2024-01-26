@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
-import { getPriceWithCurrency } from '@/utils';
+import { getPriceWithCurrency, getPriceWithDiscount } from '@/utils';
 import { emailSchema, phoneSchema, stringDefaultSchema, stringRequiredSchema } from '@/schemas';
 import { useCartContext } from '@/context/cartContext';
 import { Button, InputGroup, TextElement } from '@/components';
@@ -50,7 +50,7 @@ export function CartForm({ className, ...props }: Props) {
   };
 
   const price = state.items.reduce((acc, item) => {
-    const costDiscount = !item.discount ? item.price : item.price * (1 - item.discount * 0.01);
+    const costDiscount = getPriceWithDiscount({ price: item.price, discount: item.discount });
     return acc + costDiscount * item.count;
   }, 0);
 

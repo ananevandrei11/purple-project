@@ -20,7 +20,6 @@ export function CartList({ className, ...props }: Props) {
           product={item}
           onChangeCount={(value) => changeCountItem({ ...item, count: value })}
           onRemove={() => {
-            console.log(item);
             removeItemFromCart(item.sku);
           }}
         />

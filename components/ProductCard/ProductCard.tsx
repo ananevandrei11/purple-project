@@ -5,10 +5,11 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { IProduct } from '@/interfaces';
 import { getPriceWithCurrency } from '@/utils';
-import { TextElement } from '..';
-import styles from './ProductCard.module.css';
-import { Cart, Eye, Favorites, FavoritesFull } from '@/Icon';
+import { Eye, Favorites, FavoritesFull } from '@/Icon';
 import { useCartContext } from '@/context/cartContext';
+import { useFavorites } from '@/state/localStorage';
+import { IconBadge, TextElement } from '..';
+import styles from './ProductCard.module.css';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct;
@@ -17,7 +18,17 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export function ProductCard({ product, isFavorites, className, ...props }: Props) {
   const { name, price, images, discount, sku } = product;
-  const { addItemToCart } = useCartContext();
+  const { addItemToCart, state } = useCartContext();
+  const { addFavorite, removeFavorite, favorites } = useFavorites();
+
+  const handleToFavorites = () => {
+    const isNewSku = favorites.some((item) => item === sku);
+    if (isNewSku) {
+      removeFavorite(sku);
+    } else {
+      addFavorite(sku);
+    }
+  };
 
   return (
     <div className={clsx(styles.card, className)} {...props}>
@@ -27,7 +38,7 @@ export function ProductCard({ product, isFavorites, className, ...props }: Props
             -{discount}%
           </TextElement>
         )}
-        {isFavorites && (
+        {(isFavorites || favorites.includes(sku)) && (
           <span className={styles.favorites}>
             <FavoritesFull />
           </span>
@@ -42,12 +53,15 @@ export function ProductCard({ product, isFavorites, className, ...props }: Props
                 count: 1
               })
             }>
-            <Cart />
+            <IconBadge
+              icon="cart"
+              badge={state.items.find((item) => item.sku === sku)?.count ? 1 : undefined}
+            />
           </button>
           <Link href={`/shop/${sku}`}>
             <Eye />
           </Link>
-          <button type="button" className={styles.hoverBtn}>
+          <button type="button" className={styles.hoverBtn} onClick={handleToFavorites}>
             <Favorites />
           </button>
         </div>

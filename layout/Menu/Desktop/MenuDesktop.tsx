@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useCartContext } from '@/context/cartContext';
+import { useFavorites } from '@/state/localStorage';
 import { Person } from '@/Icon';
 import { allertaStencil } from '@/fonts';
 import { SearchHeader, IconBadge } from '@/components';
@@ -19,6 +20,7 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export default function MenuDesktop({ className, ...props }: Props) {
   const currentPath = usePathname();
+  const { favorites } = useFavorites();
   const { state } = useCartContext();
 
   return (
@@ -60,7 +62,7 @@ export default function MenuDesktop({ className, ...props }: Props) {
                 [styles.active]: '/favorites' === currentPath
               })}
               href="/favorites">
-              <IconBadge icon="favorites" />
+              <IconBadge icon="favorites" badge={favorites.length ? favorites.length : undefined} />
             </Link>
             <Link
               aria-current={'/login' === currentPath}

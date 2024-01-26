@@ -20,7 +20,7 @@ const SOCIAL_INK = [
   { id: 4, href: '/', icon: <Twitter /> }
 ];
 
-export default function Footer() {
+export function Footer() {
   const currentPath = usePathname();
   const [email, setEmail] = useState<string>('');
 

@@ -1,13 +1,6 @@
 'use client';
 import { ICartItem } from '@/interfaces';
-import {
-  createContext,
-  useReducer,
-  useContext,
-  PropsWithChildren,
-  Dispatch,
-  useCallback
-} from 'react';
+import { createContext, useReducer, useContext, Dispatch, useCallback, ReactNode } from 'react';
 
 interface ICartState {
   items: ICartItem[];
@@ -64,12 +57,17 @@ const cartReducer = (state: ICartState, action: ICartAction): ICartState => {
         ...state,
         items: [...state.items, action.payload]
       };
+
     default:
       return state;
   }
 };
 
-export const CartProvider = ({ children }: PropsWithChildren<null>) => {
+interface Props {
+  children?: ReactNode | undefined;
+}
+
+export const CartProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
 
   return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;

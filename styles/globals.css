@@ -59,3 +59,9 @@ a {
     padding: 36px 0;
   }
 }
+
+*[data-lastpass-icon-root] {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

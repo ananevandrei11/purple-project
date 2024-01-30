@@ -12,8 +12,10 @@ import { Login } from './svg/Login';
 import { Close } from './svg/Close';
 import { Check } from './svg/Check';
 import { Expand } from './svg/Expand';
-import { ArrowRight } from './svg/Arrow';
+import { ArrowRight, ArrowDown } from './svg/Arrow';
 import { Eye } from './svg/Eye';
+import { Rating } from './svg/Rating';
+import { Share } from './svg/Share';
 
 export {
   LinkedIn,
@@ -32,5 +34,8 @@ export {
   Expand,
   ArrowRight,
   Eye,
-  FavoritesFull
+  FavoritesFull,
+  Rating,
+  Share,
+  ArrowDown
 };

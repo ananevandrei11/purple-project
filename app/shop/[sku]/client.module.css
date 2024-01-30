@@ -1,0 +1,26 @@
+.root {
+  display: grid;
+  grid-template-areas: 'gallery description' 'tabs tabs';
+  grid-template-columns: 2fr 1fr;
+  gap: 100px 64px;
+}
+
+.gallery {
+  grid-area: gallery;
+}
+
+.description {
+  grid-area: description;
+}
+
+.tabs {
+  grid-area: tabs;
+}
+
+@media (width <= 1024px) {
+  .root {
+    grid-template-areas: 'gallery' 'description' 'tabs';
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+}

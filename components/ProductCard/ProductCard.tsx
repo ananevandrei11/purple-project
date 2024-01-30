@@ -1,6 +1,5 @@
 'use client';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -17,12 +16,9 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export function ProductCard({ product, isFavorites, className, ...props }: Props) {
   const { name, price, images, discount, sku } = product;
-  const router = useRouter();
-  const handleLink = () =>
-    router.push(`/product/${name.replaceAll(' ', '-').toLowerCase()}`, `/product/sku/${sku}`);
 
   return (
-    <div className={clsx(styles.card, className)} {...props} onClick={handleLink}>
+    <div className={clsx(styles.card, className)} {...props}>
       <figure className={styles.figure}>
         {discount && (
           <TextElement variant="bodySmall" tag="p" className={styles.label}>
@@ -38,9 +34,7 @@ export function ProductCard({ product, isFavorites, className, ...props }: Props
           <button type="button" className={styles.hoverBtn}>
             <Cart />
           </button>
-          <Link
-            href={`/product/sku/${sku}`}
-            as={`/product/${name.replaceAll(' ', '-').toLowerCase()}`}>
+          <Link href={`/shop/${sku}`}>
             <Eye />
           </Link>
           <button type="button" className={styles.hoverBtn}>

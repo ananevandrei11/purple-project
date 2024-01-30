@@ -10,6 +10,8 @@ import { RangeSlider } from './RangeSlider/RangeSlider';
 import { Paginator } from './Paginator/Paginator';
 import { ProductCard } from './ProductCard/ProductCard';
 import { Button } from './Button/Button';
+import { ItemInfo } from './ItemInfo/ItemInfo';
+import { Counter } from './Counter/Counter';
 
 export {
   IconBadge,
@@ -23,5 +25,7 @@ export {
   RangeSlider,
   Paginator,
   ProductCard,
-  Button
+  Button,
+  ItemInfo,
+  Counter
 };

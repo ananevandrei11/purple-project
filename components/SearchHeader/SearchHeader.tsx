@@ -18,8 +18,8 @@ export default function SearchHeader({
 }: Props): JSX.Element {
   const id = useId();
   const router = useRouter();
-  const [search, setSearch] = useState<string>('');
-  const [isShowSearch, setShowSearch] = useState<boolean>(false);
+  const [search, setSearch] = useState('');
+  const [isShowSearch, setShowSearch] = useState(false);
 
   const inputVariants: Variants = {
     show: { width: '100%', padding: '5px 5px 5px 30px' },

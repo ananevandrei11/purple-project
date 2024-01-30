@@ -22,7 +22,7 @@ const SOCIAL_INK = [
 
 export default function Footer() {
   const currentPath = usePathname();
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

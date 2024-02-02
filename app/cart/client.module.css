@@ -1,0 +1,34 @@
+.head {
+  padding-bottom: 48px;
+  text-align: center;
+}
+
+@media (width <= 1024px) {
+  .head {
+    padding-bottom: 24px;
+    text-align: left;
+  }
+}
+
+.root {
+  display: grid;
+  grid-template-columns: minmax(auto, 560px) minmax(auto, 460px);
+  column-gap: 100px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@media (width <= 1024px) {
+  .root {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  align-items: center;
+  justify-content: center;
+}

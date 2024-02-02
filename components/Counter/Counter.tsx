@@ -10,7 +10,15 @@ interface Props {
   className?: string;
   fluid?: boolean;
 }
-export function Counter({ value, max, min = 1, onDecrease, onIncrease, className, fluid }: Props) {
+export function Counter({
+  value,
+  max = 6,
+  min = 0,
+  onDecrease,
+  onIncrease,
+  className,
+  fluid
+}: Props) {
   return (
     <div
       className={clsx(styles.root, className, {
@@ -20,7 +28,7 @@ export function Counter({ value, max, min = 1, onDecrease, onIncrease, className
         type="button"
         aria-label="counter decrease"
         onClick={onDecrease}
-        disabled={min ? value <= min : false}
+        disabled={value <= min}
         className={styles.btn}>
         -
       </button>
@@ -29,7 +37,7 @@ export function Counter({ value, max, min = 1, onDecrease, onIncrease, className
         type="button"
         aria-label="counter increase"
         onClick={onIncrease}
-        disabled={max ? value >= max : false}
+        disabled={value >= max}
         className={styles.btn}>
         +
       </button>

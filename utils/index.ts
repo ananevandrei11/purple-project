@@ -1,7 +1,5 @@
-import { pluralize } from './pluralize';
-import { numberToStringDigit, getPriceWithCurrency } from './number';
-import { getDateIntl } from './date';
-import { throttle } from './throttle';
-import { debounce } from './debounce';
-
-export { pluralize, numberToStringDigit, getPriceWithCurrency, getDateIntl, throttle, debounce };
+export { pluralize } from './pluralize';
+export { numberToStringDigit, getPriceWithCurrency, getPriceWithDiscount } from './number';
+export { getDateIntl } from './date';
+export { throttle } from './throttle';
+export { debounce } from './debounce';

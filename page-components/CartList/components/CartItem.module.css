@@ -1,0 +1,77 @@
+.root {
+  display: flex;
+  column-gap: 40px;
+  width: 100%;
+}
+
+@media (width <= 1024px) {
+  .root {
+    column-gap: 8px;
+  }
+}
+
+.figure {
+  position: relative;
+  flex-shrink: 0;
+  width: 136px;
+  height: 136px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  display: grid;
+  flex: auto;
+  grid-template-areas: 'info counter remove';
+  grid-template-rows: auto;
+  grid-template-columns: 1fr repeat(2, auto);
+  align-items: flex-start;
+}
+
+@media (width <= 1024px) {
+  .content {
+    grid-template-areas:
+      'info remove'
+      'counter counter';
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  grid-area: info;
+  row-gap: 8px;
+}
+
+.price {
+  color: var(--accent);
+}
+
+.counter {
+  grid-area: counter;
+  margin-right: 52px;
+  margin-left: auto;
+}
+
+@media (width <= 1024px) {
+  .counter {
+    align-self: flex-end;
+    margin: 0;
+  }
+}
+
+
+.remove {
+  grid-area: remove;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}

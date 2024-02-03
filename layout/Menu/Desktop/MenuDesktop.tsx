@@ -4,6 +4,7 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { ROUTES } from '@/routes';
 import { useCartContext } from '@/context/cartContext';
 import { useFavorites } from '@/state/localStorage';
 import { Person } from '@/Icon';
@@ -12,8 +13,8 @@ import { SearchHeader, IconBadge } from '@/components';
 import styles from './MenuDesktop.module.css';
 
 const MAIN_LINK = [
-  { href: '/shop', text: 'Магазин' },
-  { href: '/about', text: 'О нас' }
+  { href: ROUTES.shop, text: 'Магазин' },
+  { href: ROUTES.about, text: 'О нас' }
 ];
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -26,7 +27,7 @@ export default function MenuDesktop({ className, ...props }: Props) {
   return (
     <div className={clsx(styles.root, className)} {...props}>
       <div className={styles.wrapper}>
-        <Link href="/" className={clsx(styles.logo, allertaStencil.className)}>
+        <Link href={ROUTES.home} className={clsx(styles.logo, allertaStencil.className)}>
           SHOPPE
         </Link>
         <nav className={styles.nav}>
@@ -49,27 +50,27 @@ export default function MenuDesktop({ className, ...props }: Props) {
 
           <div className={styles.shop}>
             <Link
-              aria-current={'/cart' === currentPath}
+              aria-current={currentPath.includes(ROUTES.cart)}
               className={clsx(styles.linkIcon, {
-                [styles.active]: '/cart' === currentPath
+                [styles.active]: currentPath.includes(ROUTES.cart)
               })}
-              href="/cart">
+              href={ROUTES.cart}>
               <IconBadge icon="cart" badge={state.items.length ? state.items.length : undefined} />
             </Link>
             <Link
-              aria-current={'/favorites' === currentPath}
+              aria-current={ROUTES.favorites === currentPath}
               className={clsx(styles.linkIcon, {
-                [styles.active]: '/favorites' === currentPath
+                [styles.active]: ROUTES.favorites === currentPath
               })}
-              href="/favorites">
+              href={ROUTES.favorites}>
               <IconBadge icon="favorites" badge={favorites.length ? favorites.length : undefined} />
             </Link>
             <Link
-              aria-current={'/login' === currentPath}
+              aria-current={ROUTES.login === currentPath}
               className={clsx(styles.linkIcon, {
-                [styles.active]: '/login' === currentPath
+                [styles.active]: ROUTES.login === currentPath
               })}
-              href="/login">
+              href={ROUTES.login}>
               <Person />
             </Link>
           </div>

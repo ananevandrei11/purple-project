@@ -13,3 +13,4 @@ export { ProductGallery } from './ProductGallery/ProductGallery';
 export { Error } from './Error/Error';
 export { CartList } from './CartList/CartList';
 export { CartForm } from './CartForm/CartForm';
+export { CartResult } from './CartResult/CartResult';

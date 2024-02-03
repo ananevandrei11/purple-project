@@ -11,6 +11,7 @@ import { FieldValues } from './schema';
 export function useCreateOrder() {
   const { state } = useCartContext();
   const { addSession, session } = useSession();
+  const { clearCart } = useCartContext();
 
   const handleSendOrder = async (token: string) => {
     const payload = {
@@ -24,6 +25,8 @@ export function useCreateOrder() {
 
     if ('data' in orderRes) {
       toast.success('Заказ успешно оформлен');
+      clearCart();
+      return orderRes;
     } else {
       toast.error(orderRes?.message || 'Не удалось создать заказ');
     }
@@ -31,23 +34,24 @@ export function useCreateOrder() {
 
   const handleCreateOrder = async (data: FieldValues) => {
     const token = session?.token;
-
+    let order = null;
     if (token) {
-      handleSendOrder(token);
+      order = await handleSendOrder(token);
+      return order;
     }
 
     const loginRes = await login({ email: data.email, password: data.password });
     if (loginRes?.token) {
       addSession({ token: loginRes.token, name: data.name, email: data.email });
-      handleSendOrder(loginRes.token);
-      return;
+      order = await handleSendOrder(loginRes.token);
+      return order;
     }
 
     const authRes = await authenticate(data);
     if (authRes?.token) {
       addSession({ token: authRes.token, name: data.name, email: data.email });
-      handleSendOrder(authRes.token);
-      return;
+      order = await handleSendOrder(authRes.token);
+      return order;
     } else {
       toast.error(authRes?.message || 'Не удалось авторизоваться');
       return;

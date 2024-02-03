@@ -7,15 +7,18 @@ import clsx from 'clsx';
 import { getPriceWithCurrency, getPriceWithDiscount } from '@/utils';
 import { useCartContext } from '@/context/cartContext';
 import { useSession } from '@/state/localStorage';
+import { IOrderResult } from '@/interfaces';
 import { Button, InputGroup, TextElement } from '@/components';
 
 import styles from './CartForm.module.css';
 import { FieldValues, getCartSchema } from './schema';
 import { useCreateOrder } from './useCreateOrder';
 
-interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {}
+interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
+  setCartResult: (result: IOrderResult) => void;
+}
 
-export function CartForm({ className, ...props }: Props) {
+export function CartForm({ setCartResult, className, ...props }: Props) {
   const { state } = useCartContext();
   const { session } = useSession();
   const { handleCreateOrder } = useCreateOrder();
@@ -41,7 +44,16 @@ export function CartForm({ className, ...props }: Props) {
       toast.error('Пожалуйста, заполните все обязательные поля');
       return;
     }
-    handleCreateOrder(data);
+    const response = await handleCreateOrder(data);
+    if (response) {
+      setCartResult({
+        ...response,
+        address: data.address,
+        email: session?.email || data.email,
+        name: data.name,
+        phone: data.phone
+      });
+    }
   };
 
   const price = state.items.reduce((acc, item) => {

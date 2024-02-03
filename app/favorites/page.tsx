@@ -10,16 +10,18 @@ export default function Favorites(): JSX.Element {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    if (favorites.length > 0) {
-      const requests = [];
-      for (const item of favorites) {
-        requests.push(getProductBySku({ sku: item }));
-      }
-      Promise.all(requests).then((data) => {
-        const filteredData = data.filter(Boolean) as IProduct[];
-        setProducts(filteredData);
-      });
+    if (!favorites.length) {
+      return;
     }
+
+    const requests = [];
+    for (const item of favorites) {
+      requests.push(getProductBySku({ sku: item }));
+    }
+    Promise.all(requests).then((data) => {
+      const filteredData = data.filter(Boolean) as IProduct[];
+      setProducts(filteredData);
+    });
   }, [favorites]);
 
   return <Client products={products} />;

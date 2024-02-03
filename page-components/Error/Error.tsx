@@ -1,5 +1,6 @@
 import { TextElement } from '@/components';
 import Link from 'next/link';
+import { ROUTES } from '@/routes';
 import styles from './Error.module.css';
 
 interface Props {
@@ -15,7 +16,7 @@ export function Error({ code, description }: Props) {
       <TextElement variant="heading3" tag="p" className={styles.text}>
         {description}
       </TextElement>
-      <Link href="/" className={styles.link}>
+      <Link href={ROUTES.home} className={styles.link}>
         Вернуться на главную
       </Link>
     </div>

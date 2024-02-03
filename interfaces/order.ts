@@ -15,3 +15,10 @@ export interface IOrder {
   createdAt: Date;
   data: IOrderItem[];
 }
+
+export interface IOrderResult extends IOrder {
+  address: string;
+  email: string;
+  name: string;
+  phone: string;
+}

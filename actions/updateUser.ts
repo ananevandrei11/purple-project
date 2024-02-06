@@ -2,11 +2,11 @@
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
-import { IOrder, IOrderItemList } from '@/interfaces';
+import { IProfile, IProfileUpdate } from '@/interfaces';
 
-export async function createOrder({ items, token }: { items: IOrderItemList; token: string }) {
+export async function updateUser({ body, token }: { body: IProfileUpdate; token: string }) {
   try {
-    const { data, status, statusText } = await apiStore.post<IOrder>(API.order.create, items, {
+    const { data, status, statusText } = await apiStore.post<IProfile>(API.user.update, body, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -18,6 +18,6 @@ export async function createOrder({ items, token }: { items: IOrderItemList; tok
 
     return data;
   } catch (error: unknown) {
-    throw new Error(handlerError(error, 'Error create order'));
+    throw new Error(handlerError(error, 'Error update profile'));
   }
 }

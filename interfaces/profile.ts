@@ -8,15 +8,13 @@ export interface IProfile {
   phone: string;
 }
 
-export interface IProfileRegister {
-  name: string;
-  address: string;
-  phone: string;
+export interface ILogin {
   email: string;
   password: string;
 }
 
-export interface ILogin {
-  email: string;
-  password: string;
+export interface IProfileUpdate {
+  address?: string;
+  name?: string;
+  phone?: string;
 }

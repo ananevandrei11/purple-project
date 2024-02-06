@@ -2,13 +2,15 @@
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
-import { IProfileRegister } from '@/interfaces';
+import { ILogin, IProfileUpdate } from '@/interfaces';
 
 interface IToken {
   access_token: string;
 }
 
-export async function authenticate(body: IProfileRegister) {
+interface IAuthenticate extends ILogin, IProfileUpdate {}
+
+export async function authenticate(body: IAuthenticate) {
   try {
     const { data, status, statusText } = await apiStore.post<IToken>(API.auth.register, {
       ...body
@@ -20,6 +22,6 @@ export async function authenticate(body: IProfileRegister) {
 
     return { token: data.access_token };
   } catch (error: unknown) {
-    return { token: null, message: handlerError(error, 'Error authenticate') };
+    throw new Error(handlerError(error, 'Error authenticate'));
   }
 }

@@ -20,6 +20,6 @@ export async function login(body: ILogin) {
 
     return { token: data.access_token };
   } catch (error: unknown) {
-    return { token: null, message: handlerError(error, 'Error login') };
+    throw new Error(handlerError(error, 'Error login'));
   }
 }

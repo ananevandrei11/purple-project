@@ -12,6 +12,7 @@ import { ProductCard } from './ProductCard/ProductCard';
 import { Button } from './Button/Button';
 import { ItemInfo } from './ItemInfo/ItemInfo';
 import { Counter } from './Counter/Counter';
+import { Checkbox } from './Checkbox/Checkbox';
 
 export {
   IconBadge,
@@ -27,5 +28,6 @@ export {
   ProductCard,
   Button,
   ItemInfo,
-  Counter
+  Counter,
+  Checkbox
 };

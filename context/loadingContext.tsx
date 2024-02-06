@@ -11,7 +11,7 @@ const initialState: ILoadingContext = {
 };
 const LoadingContext = createContext<ILoadingContext>(initialState);
 
-export function LoadingContextProvider({ children }: PropsWithChildren) {
+export function LoadingContextProvider({ children }: PropsWithChildren<JSX.Element>) {
   const [isLoading, setLoading] = useState<boolean>(initialState.isLoading);
 
   return (

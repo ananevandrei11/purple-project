@@ -1,6 +1,7 @@
 'use server';
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
+import { handlerError } from '@/helpers/handlerError';
 import { IReviewBody, IReviewResponse } from '@/interfaces';
 
 export async function sendReview({ data, sku }: { sku: number; data: Required<IReviewBody> }) {
@@ -20,9 +21,6 @@ export async function sendReview({ data, sku }: { sku: number; data: Required<IR
 
     return response;
   } catch (error) {
-    return {
-      success: false,
-      message: error instanceof Error ? error?.message : 'Error adding review'
-    };
+    throw new Error(handlerError(error, 'Error adding review'));
   }
 }

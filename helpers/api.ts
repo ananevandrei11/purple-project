@@ -12,5 +12,9 @@ export const API = {
     register: '/auth/register',
     login: '/auth/login',
     restore: '/auth/restore'
+  },
+  user: {
+    update: '/user/profile',
+    profile: '/user/profile'
   }
 };

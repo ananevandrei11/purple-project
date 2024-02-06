@@ -2,8 +2,9 @@ import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 
 interface ISession {
   token: string;
-  name: string;
+  name?: string;
   email: string;
+  expiredAt?: number;
 }
 
 export function useSession() {
@@ -14,8 +15,13 @@ export function useSession() {
     setSession((prev) => ({ ...prev, ...session }));
   };
 
+  const clearSession = () => {
+    setSession(null);
+  };
+
   return {
     session: updatedSession,
-    addSession
+    addSession,
+    clearSession
   };
 }

@@ -24,6 +24,7 @@
 }
 
 .logo {
+  width: fit-content;
   font-family: var(--font-allerta-stencil);
   font-size: 25px;
   font-style: normal;

@@ -14,3 +14,6 @@ export { Error } from './Error/Error';
 export { CartList } from './CartList/CartList';
 export { CartForm } from './CartForm/CartForm';
 export { CartResult } from './CartResult/CartResult';
+export { LoginHead } from './LoginHead/LoginHead';
+export { LoginEntry } from './LoginEntry/LoginEntry';
+export { LoginRegister } from './LoginRegister/LoginRegister';

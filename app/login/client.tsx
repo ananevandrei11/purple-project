@@ -1,14 +1,15 @@
 'use client';
 import { useState } from 'react';
 import { useSession } from '@/state/localStorage';
-import { LoginEntry, LoginHead, LoginRegister } from '@/page-components';
+import { LoginEntry, LoginHead, LoginRegister, LoginRestore } from '@/page-components';
 
 import styles from './client.module.css';
 import { Button, TextElement } from '@/components';
+import { ILoginMode } from '@/interfaces';
 
 export function Client() {
   const { session, clearSession } = useSession();
-  const [mode, setMode] = useState<'login' | 'register'>('login');
+  const [mode, setMode] = useState<ILoginMode>('login');
 
   if (session?.token) {
     return (
@@ -25,9 +26,19 @@ export function Client() {
 
   return (
     <div className={styles.root}>
-      <LoginHead setMode={setMode} mode={mode} />
+      {mode !== 'restore' && <LoginHead setMode={setMode} mode={mode} />}
       {mode === 'login' && <LoginEntry />}
       {mode === 'register' && <LoginRegister />}
+      {mode !== 'restore' && (
+        <Button
+          variant="link"
+          type="button"
+          onClick={() => setMode('restore')}
+          className={styles.restore}>
+          Забыли пароль?
+        </Button>
+      )}
+      {mode === 'restore' && <LoginRestore />}
     </div>
   );
 }

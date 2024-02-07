@@ -17,3 +17,4 @@ export { CartResult } from './CartResult/CartResult';
 export { LoginHead } from './LoginHead/LoginHead';
 export { LoginEntry } from './LoginEntry/LoginEntry';
 export { LoginRegister } from './LoginRegister/LoginRegister';
+export { LoginRestore } from './LoginRestore/LoginRestore';

@@ -1,12 +1,13 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import clsx from 'clsx';
+import { ILoginMode } from '@/interfaces';
 import { TextElement } from '@/components';
 
 import styles from './LoginHead.module.css';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  setMode: (mode: 'login' | 'register') => void;
-  mode: 'login' | 'register';
+  setMode: (mode: ILoginMode) => void;
+  mode: ILoginMode;
 }
 
 export function LoginHead({ setMode, mode, className, ...props }: Props) {

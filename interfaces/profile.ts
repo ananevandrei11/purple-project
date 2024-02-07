@@ -13,6 +13,8 @@ export interface ILogin {
   password: string;
 }
 
+export type ILoginMode = 'login' | 'register' | 'restore';
+
 export interface IProfileUpdate {
   address?: string;
   name?: string;

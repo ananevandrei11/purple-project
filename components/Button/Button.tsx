@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 
 interface Props
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  variant: 'black' | 'white';
+  variant: 'black' | 'white' | 'link';
   fluid?: boolean;
 }
 

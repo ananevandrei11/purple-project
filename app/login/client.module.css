@@ -5,3 +5,7 @@
   max-width: 480px;
   margin: 0 auto;
 }
+
+.restore {
+  align-self: center;
+}

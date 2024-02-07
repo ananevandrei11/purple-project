@@ -18,3 +18,4 @@ export { LoginHead } from './LoginHead/LoginHead';
 export { LoginEntry } from './LoginEntry/LoginEntry';
 export { LoginRegister } from './LoginRegister/LoginRegister';
 export { LoginRestore } from './LoginRestore/LoginRestore';
+export { Profile } from './Profile/Profile';

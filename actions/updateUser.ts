@@ -6,7 +6,8 @@ import { IProfile, IProfileUpdate } from '@/interfaces';
 
 export async function updateUser({ body, token }: { body: IProfileUpdate; token: string }) {
   try {
-    const { data, status, statusText } = await apiStore.post<IProfile>(API.user.update, body, {
+    console.log(API.user.update);
+    const { data, status, statusText } = await apiStore.patch<IProfile>(API.user.update, body, {
       headers: {
         Authorization: `Bearer ${token}`
       }

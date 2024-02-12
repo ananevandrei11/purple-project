@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  word-break: break-word;
+}
+
+@media (width <= 1024px) {
+  .info {
+    row-gap: 8px;
+  }
+}
+
+.label {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.value {
+  color: var(--gray);
+}

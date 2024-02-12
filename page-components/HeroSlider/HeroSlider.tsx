@@ -2,6 +2,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { ROUTES } from '@/routes';
 import { IProduct } from '@/interfaces';
 import { TextElement } from '@/components';
 import { getPriceWithCurrency } from '@/utils';
@@ -52,7 +53,7 @@ export function HeroSlider({ products, className }: Props) {
                 <TextElement variant={mobile ? 'bodyMedium' : 'heading4'}>
                   {getPriceWithCurrency({ price: product.price })}
                 </TextElement>
-                <Link className={styles.link} href={`/shop/${product.sku}`}>
+                <Link className={styles.link} href={ROUTES.shopSku(product.sku)}>
                   Смотреть {product.sku}
                 </Link>
               </div>

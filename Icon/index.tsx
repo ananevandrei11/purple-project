@@ -13,7 +13,7 @@ import { Close } from './svg/Close';
 import { Check } from './svg/Check';
 import { Expand } from './svg/Expand';
 import { ArrowRight, ArrowDown } from './svg/Arrow';
-import { Eye } from './svg/Eye';
+import { Eye, EyeClose } from './svg/Eye';
 import { Rating } from './svg/Rating';
 import { Share } from './svg/Share';
 
@@ -34,6 +34,7 @@ export {
   Expand,
   ArrowRight,
   Eye,
+  EyeClose,
   FavoritesFull,
   Rating,
   Share,

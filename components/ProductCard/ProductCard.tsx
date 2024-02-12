@@ -3,6 +3,7 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { ROUTES } from '@/routes';
 import { IProduct } from '@/interfaces';
 import { getPriceWithCurrency } from '@/utils';
 import { Eye, Favorites, FavoritesFull } from '@/Icon';
@@ -58,7 +59,7 @@ export function ProductCard({ product, isFavorites, className, ...props }: Props
               badge={state.items.find((item) => item.sku === sku)?.count ? 1 : undefined}
             />
           </button>
-          <Link href={`/shop/${sku}`}>
+          <Link href={ROUTES.shopSku(sku)}>
             <Eye />
           </Link>
           <button type="button" className={styles.hoverBtn} onClick={handleToFavorites}>

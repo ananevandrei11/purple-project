@@ -46,11 +46,12 @@ export function ReviewForm({ sku, className, ...props }: Props) {
     if (!isValid) {
       return null;
     }
-    const response = await sendReview({ data, sku });
-    if (response.success) {
+
+    try {
+      const response = await sendReview({ data, sku });
       toast.success(response?.message);
-    } else if (!response.success) {
-      toast.error(response?.message);
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error?.message : 'Не удалось оставить отзыв');
     }
   };
 

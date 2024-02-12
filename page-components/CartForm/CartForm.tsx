@@ -2,37 +2,34 @@
 import { DetailedHTMLProps, FormHTMLAttributes } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { getPriceWithCurrency, getPriceWithDiscount } from '@/utils';
-import { emailSchema, phoneSchema, stringDefaultSchema, stringRequiredSchema } from '@/schemas';
 import { useCartContext } from '@/context/cartContext';
+import { useSession } from '@/state/localStorage';
+import { IOrderResult } from '@/interfaces';
 import { Button, InputGroup, TextElement } from '@/components';
 
 import styles from './CartForm.module.css';
+import { FieldValues, getCartSchema } from './schema';
+import { useCreateOrder } from './useCreateOrder';
 
-interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {}
-
-function getCartSchema(isAuth: boolean = false) {
-  return z.object({
-    address: stringRequiredSchema,
-    name: stringDefaultSchema,
-    phone: phoneSchema,
-    email: isAuth ? stringDefaultSchema : emailSchema,
-    password: isAuth ? stringDefaultSchema : stringRequiredSchema
-  });
+interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
+  setCartResult: (result: IOrderResult) => void;
 }
-export type FieldValues = z.infer<ReturnType<typeof getCartSchema>>;
 
-export function CartForm({ className, ...props }: Props) {
+export function CartForm({ setCartResult, className, ...props }: Props) {
   const { state } = useCartContext();
+  const { session } = useSession();
+  const { handleCreateOrder } = useCreateOrder();
+  const isAuth = !!session?.token;
+
   const {
     handleSubmit,
     control,
     formState: { isValid, errors }
   } = useForm<FieldValues>({
-    resolver: zodResolver(getCartSchema()),
+    resolver: zodResolver(getCartSchema(isAuth)),
     defaultValues: {
       address: '',
       name: '',
@@ -45,8 +42,18 @@ export function CartForm({ className, ...props }: Props) {
   const onSubmit = async (data: FieldValues) => {
     if (!isValid) {
       toast.error('Пожалуйста, заполните все обязательные поля');
+      return;
     }
-    console.log(data);
+    const response = await handleCreateOrder(data);
+    if (response) {
+      setCartResult({
+        ...response,
+        address: data.address,
+        email: session?.email || data.email,
+        name: data.name,
+        phone: data.phone
+      });
+    }
   };
 
   const price = state.items.reduce((acc, item) => {
@@ -56,36 +63,40 @@ export function CartForm({ className, ...props }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.form, className)} {...props}>
-      <InputGroup>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <InputGroup.Input
-              {...field}
-              placeholder="Email*"
-              required
-              autoComplete="shipping email"
+      {!isAuth && (
+        <>
+          <InputGroup>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <InputGroup.Input
+                  {...field}
+                  placeholder="Email*"
+                  required
+                  autoComplete="shipping email"
+                />
+              )}
             />
-          )}
-        />
-        {errors.email && <InputGroup.Error>{errors.email?.message}</InputGroup.Error>}
-      </InputGroup>
-      <InputGroup>
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <InputGroup.Input
-              {...field}
-              placeholder="Пароль*"
-              required
-              autoComplete="current-password"
+            {errors.email && <InputGroup.Error>{errors.email?.message}</InputGroup.Error>}
+          </InputGroup>
+          <InputGroup>
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <InputGroup.Input
+                  {...field}
+                  placeholder="Пароль*"
+                  required
+                  autoComplete="current-password"
+                />
+              )}
             />
-          )}
-        />
-        {errors.password && <InputGroup.Error>{errors.password?.message}</InputGroup.Error>}
-      </InputGroup>
+            {errors.password && <InputGroup.Error>{errors.password?.message}</InputGroup.Error>}
+          </InputGroup>
+        </>
+      )}
       <InputGroup>
         <Controller
           name="address"

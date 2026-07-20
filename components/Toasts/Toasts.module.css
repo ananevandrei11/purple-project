@@ -1,0 +1,30 @@
+.root {
+  height: auto !important;
+}
+
+.toast {
+  display: flex;
+  column-gap: 20px;
+  align-items: flex-start;
+  max-width: 381px;
+  padding: 17px 28px 17px 20px;
+  box-shadow: 0 0 8px 0 rgb(0 0 0 / 15%);
+}
+
+.icon {
+  margin: 3px 0;
+  font-size: 20px;
+}
+
+.success {
+  background: var(--gray-light);
+}
+
+.success .icon {
+  color: var(--accent);
+}
+
+.error {
+  color: var(--white);
+  background: var(--black);
+}

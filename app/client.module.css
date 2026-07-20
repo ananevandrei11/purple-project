@@ -1,0 +1,31 @@
+.content {
+  display: grid;
+  grid-template-areas:
+    'head link'
+    'products products';
+  grid-template-rows: auto;
+  grid-template-columns: auto auto;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 64px 0;
+}
+
+@media (width <= 1024px) {
+  .content {
+    gap: 16px;
+  }
+}
+
+.head {
+  grid-area: head;
+}
+
+.link {
+  grid-area: link;
+  color: var(--accent);
+}
+
+.products {
+  grid-area: products;
+}

@@ -1,18 +1,13 @@
-// Require the framework and instantiate it
-
-// ESM
 import Fastify from 'fastify';
+import { products } from './routes/products';
 
 const fastify = Fastify({
   logger: true
 });
 
-// Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' });
-});
+fastify.get('/health', async () => ({ status: 'ok' }));
+fastify.register(products);
 
-// Run the server!
 fastify.listen({ port: 4000, host: 'localhost' }, function (err, address) {
   if (err) {
     fastify.log.error(err);
@@ -20,3 +15,26 @@ fastify.listen({ port: 4000, host: 'localhost' }, function (err, address) {
   }
   fastify.log.info(`Server started at address: ${address}`);
 });
+
+/*
+export const API = {
+  products: '/products',
+  productsFilter: '/products/get-filter',
+  productSku: '/products/sku',
+  productReview: (sku: number) => `/products/sku/${sku}/review`,
+  order: {
+    create: '/order',
+    getById: (id: string) => `/order/${id}`,
+    my: '/order/my'
+  },
+  auth: {
+    register: '/auth/register',
+    login: '/auth/login',
+    restore: '/auth/restore'
+  },
+  user: {
+    update: '/user/profile',
+    profile: '/user/profile'
+  }
+};
+*/

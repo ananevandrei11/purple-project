@@ -1,0 +1,176 @@
+{
+  "totalProducts": 6,
+  "limit": 1000,
+  "offset": 0,
+  "products": [
+    {
+      "name": "Lira Earrings",
+      "price": 20,
+      "discount": 5,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-1.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-1.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-1.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-1.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-1.png"
+      ],
+      "categoryId": 2,
+      "sku": 1,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    },
+    {
+      "name": "Hal Earrings",
+      "price": 25,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-3.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-3.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-3.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-3.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-3.png"
+      ],
+      "categoryId": 2,
+      "sku": 2,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    },
+    {
+      "name": "Kaede Hair Pin Set Of 3",
+      "price": 30,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-4.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-4.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-4.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-4.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-4.png"
+      ],
+      "categoryId": 1,
+      "sku": 3,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    },
+    {
+      "name": "Hair Pin Set of 3",
+      "price": 30,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-5.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-5.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-5.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-5.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-5.png"
+      ],
+      "categoryId": 1,
+      "sku": 4,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    },
+    {
+      "name": "Plaine Necklace",
+      "price": 19,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-6.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-6.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-6.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-6.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-6.png"
+      ],
+      "categoryId": 3,
+      "sku": 5,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    },
+    {
+      "name": "Yuki Hair Pin Set of 3",
+      "price": 29,
+      "description": "Универсальная классика. Серьги выполнены из розового золота с дорожкой из бриллиантов и изумрудов. Нежные, утонченные, подойдут не только к деловому костюму, но и дополнят образ любой модницы.",
+      "images": [
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-2.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-2.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-2.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-2.png",
+        "https://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/products/product-2.png"
+      ],
+      "categoryId": 1,
+      "sku": 6,
+      "reviews": [
+        {
+          "name": "Василий",
+          "rating": 5,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "В целом отлично, так как стоят не дорого и не пришлось жене дарить новый телефон, который она просила."
+        },
+        {
+          "name": "Анатолий",
+          "rating": 3,
+          "date": "2026-07-01T21:11:10.806Z",
+          "description": "Я бы поставил и больше, но при доставке данные серёжки помялись и стали треугольными, а не круглыми. В остальном сервис отличный и я буду продолжать покупать в этом магазине."
+        }
+      ]
+    }
+  ]
+}

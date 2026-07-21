@@ -4,12 +4,14 @@ services:
     container_name: purple_api_demo
     ports:
       - 5432:5432
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: api_demo
       PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db:/var/lib/postgresql/data
 
 volumes:
-  pgdata:
+  db:

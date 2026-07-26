@@ -14,7 +14,7 @@ const CATEGORIES = [
   { id: 3, name: 'Колье' }
 ];
 
-const productsJson = readFileSync(new URL('products.json', import.meta.url), 'utf-8');
+const productsJson = readFileSync(new URL('../seed-data/products.json', import.meta.url), 'utf-8');
 const productsData = JSON.parse(productsJson);
 
 async function main() {

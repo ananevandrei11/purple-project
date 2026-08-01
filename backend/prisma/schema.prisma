@@ -37,20 +37,30 @@ model Review {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  createdAt    DateTime @default(now())
-  email        String   @unique
-  passwordHash String
-  name         String
-  address      String?
-  phone        String?
-  restoreToken String?
-  orders       Order[]
+  id            String         @id @default(uuid())
+  createdAt     DateTime       @default(now())
+  email         String         @unique
+  passwordHash  String
+  name          String?
+  address       String?
+  phone         String?
+  orders        Order[]
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id          String   @id @default(uuid())
+  hashedToken String   @unique
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt   DateTime
+  revoked     Boolean  @default(false)
+  createdAt   DateTime @default(now())
 }
 
 model Order {
   id        Int         @id @default(autoincrement())
-  userId    Int
+  userId    String
   user      User        @relation(fields: [userId], references: [id])
   status    String
   createdAt DateTime    @default(now())
@@ -58,9 +68,9 @@ model Order {
 }
 
 model OrderItem {
-  id      Int   @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   orderId Int
-  order   Order @relation(fields: [orderId], references: [id])
+  order   Order  @relation(fields: [orderId], references: [id])
   name    String
   count   Int
   price   Float

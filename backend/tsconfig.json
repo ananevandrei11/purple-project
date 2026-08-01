@@ -32,6 +32,8 @@
     // "noPropertyAccessFromIndexSignature": true,
     "moduleResolution": "bundler",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
 
     // Recommended Options
     "strict": true,

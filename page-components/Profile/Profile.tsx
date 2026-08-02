@@ -16,10 +16,8 @@ export function Profile() {
 
   useEffect(() => {
     async function fetchData(token: string) {
-      // You can await here
       try {
         const response = await getOrders({ token });
-        console.log(response);
         setOrders(response);
       } catch (error) {
         toast.error(error instanceof Error ? error?.message : 'Не удалось получить заказы');

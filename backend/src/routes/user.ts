@@ -1,4 +1,4 @@
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
@@ -34,6 +34,20 @@ const getAccessTokenData = ({ secret, user }: { secret: string; user: User }) =>
     expiresIn: '15m'
   });
   return accessToken;
+};
+
+const checkAccessToken = (request: FastifyRequest, reply: FastifyReply): jwt.JwtPayload => {
+  const headers = request.headers;
+  const token = headers.authorization?.split(' ')[1];
+  if (!token) {
+    return reply.status(401).send({ message: 'Authentication required' });
+  }
+  const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || '');
+  if (typeof decodedToken === 'string') {
+    return reply.status(401).send({ message: 'Authentication required' });
+  }
+
+  return decodedToken;
 };
 
 export async function user(app: FastifyInstance) {
@@ -120,4 +134,44 @@ export async function user(app: FastifyInstance) {
       return reply.code(500).send({ success: false, error: 'Something went wrong' });
     }
   });
+
+  app.get('/user/profile', async (request, reply) => {
+    const decodedToken = checkAccessToken(request, reply);
+    if (!decodedToken.sub) {
+      return reply.status(401).send({ message: 'Authentication required' });
+    }
+    const user = await prisma.user.findUnique({ where: { id: decodedToken.sub } });
+
+    if (!user) {
+      return reply.status(404).send({ message: 'User is not found' });
+    }
+
+    return reply.status(200).send(user);
+  });
+
+  app.patch<{ Body: { address?: string; name?: string; phone?: string } }>(
+    '/user/profile',
+    async (request, reply) => {
+      const decodedToken = checkAccessToken(request, reply);
+      if (!decodedToken.sub) {
+        return reply.status(401).send({ message: 'Authentication required' });
+      }
+      const user = await prisma.user.findUnique({ where: { id: decodedToken.sub } });
+      if (!user) {
+        return reply.status(404).send({ message: 'User is not found' });
+      }
+
+      const { address, name, phone } = request.body;
+      const updatedUser = await prisma.user.update({
+        where: { id: decodedToken.sub },
+        data: {
+          ...(address && { address }),
+          ...(name && { name }),
+          ...(phone && { phone })
+        }
+      });
+
+      return reply.status(200).send(updatedUser);
+    }
+  );
 }

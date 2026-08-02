@@ -1,0 +1,1 @@
+export { getUserPayloadToken } from './getUserDataFromToken';

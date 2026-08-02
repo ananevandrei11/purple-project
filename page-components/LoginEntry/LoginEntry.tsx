@@ -60,6 +60,8 @@ export function LoginEntry({ className, ...props }: Props) {
         token: responseLogin?.token,
         name: profile?.name,
         email: profile?.email,
+        phone: profile?.phone,
+        address: profile?.address,
         ...(data.isSave && {
           expiredAt: Date.now() + ONE_WEEK_IN_MS
         })

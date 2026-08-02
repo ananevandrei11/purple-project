@@ -5,7 +5,7 @@ import { handlerError } from '@/helpers/handlerError';
 import { ILogin } from '@/interfaces';
 
 interface IToken {
-  access_token: string;
+  accessToken: string;
 }
 
 export async function login(body: ILogin) {
@@ -18,7 +18,7 @@ export async function login(body: ILogin) {
       throw new Error(`${status}: ${statusText}`);
     }
 
-    return { token: data.access_token };
+    return { token: data.accessToken };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error login'));
   }

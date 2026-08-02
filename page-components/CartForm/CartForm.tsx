@@ -31,10 +31,10 @@ export function CartForm({ setCartResult, className, ...props }: Props) {
   } = useForm<FieldValues>({
     resolver: zodResolver(getCartSchema(isAuth)),
     defaultValues: {
-      address: '',
-      name: '',
-      phone: '',
-      email: '',
+      address: session?.address || '',
+      name: session?.name || '',
+      phone: session?.phone || '',
+      email: session?.email || '',
       password: ''
     }
   });

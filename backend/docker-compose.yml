@@ -1,0 +1,71 @@
+services:
+  db:
+    image: postgres:17
+    container_name: purple_api_demo
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: api_demo
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  # https://www.datacamp.com/tutorial/minio-docker
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password_root
+      MINIO_API_CORS_ALLOW_ORIGIN: "http://localhost:3000,http://localhost:4000"
+    volumes:
+      - ./minio/data:/data
+    command: server /data --console-address ":9001"
+
+  # https://banach.net.pl/posts/2025/creating-bucket-automatically-on-local-minio-with-docker-compose/
+  # https://pliutau.com/local-minio-docker-compose-buckets
+  createbuckets:
+    image: quay.io/minio/mc
+    depends_on:
+      - minio
+    restart: on-failure
+    volumes:
+      - ./seed-data/images:/tmp/local-images:ro
+    entrypoint: >
+      /bin/sh -c "
+      sleep 5;
+      echo 'Step 1: check files';
+      ls -la /tmp/local-images;
+
+      echo 'Step 2: Auth';
+      /usr/bin/mc alias set dockerminio http://minio:9000 admin password_root;
+
+      echo 'Step 3: Create bucket';
+      /usr/bin/mc mb --ignore-existing dockerminio/bucket;
+
+      echo 'Step 4: Copy images';
+      /usr/bin/mc cp --recursive /tmp/local-images/ dockerminio/bucket/images/;
+
+      echo 'Step 5: Make bucket public for anonymous downloads';
+      /usr/bin/mc anonymous set download dockerminio/bucket;
+
+      echo 'Success';
+      exit 0;
+      "
+    # entrypoint: >
+    #   /bin/sh -c "
+    #   sleep 5;
+    #   /usr/bin/mc alias set dockerminio http://minio:9000 admin password_root;
+    #   /usr/bin/mc mb dockerminio/bucket/images;
+    #   exit 0;
+    #   "
+
+volumes:
+  db:
+  minio:

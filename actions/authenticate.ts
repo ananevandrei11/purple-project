@@ -5,7 +5,7 @@ import { handlerError } from '@/helpers/handlerError';
 import { ILogin, IProfileUpdate } from '@/interfaces';
 
 interface IToken {
-  access_token: string;
+  accessToken: string;
 }
 
 interface IAuthenticate extends ILogin, IProfileUpdate {}
@@ -20,7 +20,7 @@ export async function authenticate(body: IAuthenticate) {
       throw new Error(`${status}: ${statusText}`);
     }
 
-    return { token: data.access_token };
+    return { token: data.accessToken };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error authenticate'));
   }

@@ -19,6 +19,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn-bucket.hb.ru-msk.vkcs.cloud',
         pathname: '**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '**'
       }
     ]
   }

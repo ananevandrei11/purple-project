@@ -4,6 +4,8 @@ interface ISession {
   token: string;
   name?: string;
   email: string;
+  phone?: string;
+  address?: string;
   expiredAt?: number;
 }
 

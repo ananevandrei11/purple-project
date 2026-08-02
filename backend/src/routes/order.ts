@@ -1,17 +1,17 @@
 import type { FastifyInstance } from 'fastify';
 import { prisma } from '../db';
-import { checkAccessToken } from '../utils/token';
+import { requireAuth } from '../utils/token';
 
 export async function order(app: FastifyInstance) {
-  app.get('/order/my', async (request, reply) => {
-    const decodedToken = checkAccessToken(request, reply);
-    if (!decodedToken.sub) {
-      return reply.status(401).send({ message: 'Authentication required' });
+  app.get('/order/my', { preHandler: requireAuth }, async (request, reply) => {
+    const userId = request.user?.id;
+    if (!userId) {
+      return reply.code(401).send({ code: 'NO_TOKEN' });
     }
 
     const orders = await prisma.order.findMany({
       where: {
-        userId: decodedToken.sub
+        userId: userId
       },
       include: { items: true }
     });
@@ -21,16 +21,18 @@ export async function order(app: FastifyInstance) {
 
   app.post<{ Body: { items: { name: string; count: number; price: number }[] } }>(
     '/order',
+    { preHandler: requireAuth },
     async (request, reply) => {
-      const decodedToken = checkAccessToken(request, reply);
-      if (!decodedToken.sub) {
-        return reply.status(401).send({ message: 'Authentication required' });
+      const userId = request.user?.id;
+      if (!userId) {
+        return reply.code(401).send({ code: 'NO_TOKEN' });
       }
+
       const { items } = request.body;
       const orderItem = await prisma.order.create({
         data: {
           status: 'created',
-          userId: decodedToken.sub,
+          userId: userId,
           items: { create: items }
         },
         include: { items: true }

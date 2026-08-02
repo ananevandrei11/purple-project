@@ -5,5 +5,6 @@ export const apiStore = axios.create({
   baseURL: DOMAIN,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  withCredentials: true
 });

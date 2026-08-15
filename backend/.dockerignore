@@ -1,0 +1,9 @@
+node_modules
+dist
+src/generated
+minio
+seed-data
+.env
+.git
+Dockerfile
+docker-compose.yml

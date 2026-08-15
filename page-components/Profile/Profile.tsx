@@ -4,29 +4,30 @@ import toast from 'react-hot-toast';
 import clsx from 'clsx';
 import { getOrders } from '@/api/getOrders';
 import { IOrder } from '@/interfaces';
-import { useSession } from '@/state/localStorage';
 import { getDateIntl, getPriceWithCurrency } from '@/utils';
 import { Button, TextElement } from '@/components';
 
 import styles from './Profile.module.css';
+import { logout } from '@/actions/logout';
 
 export function Profile() {
-  const { session, clearSession } = useSession();
   const [orders, setOrders] = useState<IOrder[]>([]);
 
   useEffect(() => {
-    async function fetchData(token: string) {
+    async function fetchData() {
       try {
-        const response = await getOrders({ token });
+        const response = await getOrders();
         setOrders(response);
       } catch (error) {
         toast.error(error instanceof Error ? error?.message : 'Не удалось получить заказы');
       }
     }
-    if (session?.token) {
-      fetchData(session.token);
-    }
-  }, [session]);
+    fetchData();
+  }, []);
+
+  const handleLogout = async () => {
+    await logout();
+  };
 
   return (
     <div className={styles.root}>
@@ -34,8 +35,7 @@ export function Profile() {
         <TextElement variant="heading1" tag="h1">
           Мой аккаунт
         </TextElement>
-
-        <Button onClick={clearSession} variant="white" type="button">
+        <Button onClick={handleLogout} variant="white" type="button">
           Выход
         </Button>
       </section>

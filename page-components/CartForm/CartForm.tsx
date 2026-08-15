@@ -1,43 +1,66 @@
 'use client';
-import { DetailedHTMLProps, FormHTMLAttributes } from 'react';
+import { DetailedHTMLProps, FormHTMLAttributes, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { getPriceWithCurrency, getPriceWithDiscount } from '@/utils';
 import { useCartContext } from '@/context/cartContext';
-import { useSession } from '@/state/localStorage';
-import { IOrderResult } from '@/interfaces';
+import { IOrderResult, IProfile } from '@/interfaces';
 import { Button, InputGroup, TextElement } from '@/components';
 
 import styles from './CartForm.module.css';
 import { FieldValues, getCartSchema } from './schema';
 import { useCreateOrder } from './useCreateOrder';
+import { getProfile } from '@/actions/getProfile';
 
 interface Props extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   setCartResult: (result: IOrderResult) => void;
+  isAuth: boolean;
 }
 
-export function CartForm({ setCartResult, className, ...props }: Props) {
+export function CartForm({ setCartResult, className, isAuth, ...props }: Props) {
   const { state } = useCartContext();
-  const { session } = useSession();
-  const { handleCreateOrder } = useCreateOrder();
-  const isAuth = !!session?.token;
+  const { handleCreateOrder } = useCreateOrder(isAuth);
+  const [profile, setProfile] = useState<IProfile | null>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getProfile();
+        setProfile(response);
+      } catch {
+        //
+      }
+    }
+    fetchData();
+  }, []);
 
   const {
     handleSubmit,
     control,
+    setValues,
     formState: { isValid, errors }
   } = useForm<FieldValues>({
     resolver: zodResolver(getCartSchema(isAuth)),
     defaultValues: {
-      address: session?.address || '',
-      name: session?.name || '',
-      phone: session?.phone || '',
-      email: session?.email || '',
-      password: ''
+      address: profile?.address || '',
+      name: profile?.name || '',
+      phone: profile?.phone || '',
+      email: profile?.email || ''
     }
   });
+
+  useEffect(() => {
+    if (profile) {
+      setValues({
+        address: profile?.address || '',
+        name: profile?.name || '',
+        phone: profile?.phone || '',
+        email: profile?.email || ''
+      });
+    }
+  }, [profile, setValues]);
 
   const onSubmit = async (data: FieldValues) => {
     if (!isValid) {
@@ -49,7 +72,7 @@ export function CartForm({ setCartResult, className, ...props }: Props) {
       setCartResult({
         ...response,
         address: data.address,
-        email: session?.email || data.email,
+        email: profile?.email || data.email,
         name: data.name,
         phone: data.phone
       });

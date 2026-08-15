@@ -1,17 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { useSession } from '@/state/localStorage';
 import { LoginEntry, LoginHead, LoginRegister, LoginRestore, Profile } from '@/page-components';
 
 import styles from './client.module.css';
 import { Button } from '@/components';
 import { ILoginMode } from '@/interfaces';
 
-export function Client() {
-  const { session } = useSession();
+export function Client({ isAuth }: { isAuth: boolean }) {
   const [mode, setMode] = useState<ILoginMode>('login');
 
-  if (session?.token) {
+  if (isAuth) {
     return <Profile />;
   }
 

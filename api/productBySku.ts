@@ -1,3 +1,4 @@
+'use server';
 import { API } from '@/helpers/api';
 import { IProduct } from '@/interfaces';
 import { apiStore } from '@/config/apiStore';

@@ -1,16 +1,14 @@
 'use server';
+import { revalidatePath } from 'next/cache';
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
-import { ILogin } from '@/interfaces';
-
-interface IToken {
-  accessToken: string;
-}
+import { ILogin, IAuthToken } from '@/interfaces';
+import { setSession } from '@/state/auth/session';
 
 export async function login(body: ILogin) {
   try {
-    const { data, status, statusText } = await apiStore.post<IToken>(API.auth.login, {
+    const { data, status, statusText } = await apiStore.post<IAuthToken>(API.auth.login, {
       ...body
     });
 
@@ -18,7 +16,9 @@ export async function login(body: ILogin) {
       throw new Error(`${status}: ${statusText}`);
     }
 
-    return { token: data.accessToken };
+    setSession({ accessToken: data.accessToken, refreshToken: data.refreshToken });
+    revalidatePath('/');
+    return { success: true };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error login'));
   }

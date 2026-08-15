@@ -51,7 +51,7 @@ fastify.register(products);
 fastify.register(user);
 fastify.register(order);
 
-fastify.listen({ port: 4000, host: 'localhost' }, function (err, address) {
+fastify.listen({ port: 4000, host: '0.0.0.0' }, function (err, address) {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

@@ -1,15 +1,14 @@
 'use server';
 import { API } from '@/helpers/api';
 import { IProfile } from '@/interfaces';
-import { apiStore } from '@/config/apiStore';
 import { handlerError } from '@/helpers/handlerError';
+import { authFetch } from '@/state/auth/authFetch';
 
-export async function getProfile({ token }: { token: string }) {
+export async function getProfile() {
   try {
-    const { data, status, statusText } = await apiStore.get<IProfile>(API.user.profile, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    const { data, status, statusText } = await authFetch<IProfile>({
+      method: 'GET',
+      url: API.user.profile
     });
 
     if (status >= 400) {

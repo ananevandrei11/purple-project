@@ -1,14 +1,13 @@
 import { API } from '@/helpers/api';
 import { IOrder } from '@/interfaces';
-import { apiStore } from '@/config/apiStore';
 import { handlerError } from '@/helpers/handlerError';
+import { authFetch } from '@/state/auth/authFetch';
 
-export async function getOrders({ token }: { token: string }) {
+export async function getOrders() {
   try {
-    const { data, status, statusText } = await apiStore.get<IOrder[]>(API.order.my, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    const { data, status, statusText } = await authFetch<IOrder>({
+      method: 'GET',
+      url: API.order.my
     });
 
     if (status >= 400) {

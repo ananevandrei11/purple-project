@@ -8,7 +8,7 @@ import { CartForm, CartList, CartResult, EmptyState } from '@/page-components';
 import { TextElement } from '@/components';
 import styles from './client.module.css';
 
-export function Client() {
+export function Client({ isAuth }: { isAuth: boolean }) {
   const { state } = useCartContext();
   const [cartResult, setCartResult] = useState<IOrderResult | null>(null);
 
@@ -32,7 +32,7 @@ export function Client() {
       </TextElement>
       <div className={styles.root}>
         <CartList />
-        <CartForm setCartResult={setCartResult} />
+        <CartForm setCartResult={setCartResult} isAuth={isAuth} />
       </div>
     </>
   );

@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useSession } from '@/state/localStorage';
 import { emailSchema, stringRequiredSchema } from '@/schemas';
 import { Button, Checkbox, InputGroup } from '@/components';
 import styles from './LoginRegister.module.css';
@@ -28,7 +27,6 @@ const schema = z
 type FieldValues = z.infer<typeof schema>;
 
 export function LoginRegister({ className, ...props }: Props) {
-  const { addSession } = useSession();
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirmPassword: false
@@ -61,11 +59,7 @@ export function LoginRegister({ className, ...props }: Props) {
     const { email, password } = data;
 
     try {
-      const profile = await authenticate({ email, password });
-      addSession({
-        token: profile?.token,
-        email
-      });
+      await authenticate({ email, password });
       toast.success('Вы успешно cоздали профиль');
     } catch (error) {
       toast.error(error instanceof Error ? error?.message : 'Не удалось cоздать профиль');

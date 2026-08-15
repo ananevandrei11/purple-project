@@ -2,17 +2,15 @@
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
-import { ILogin, IProfileUpdate } from '@/interfaces';
-
-interface IToken {
-  accessToken: string;
-}
+import { IAuthToken, ILogin, IProfileUpdate } from '@/interfaces';
+import { setSession } from '@/state/auth/session';
+import { revalidatePath } from 'next/cache';
 
 interface IAuthenticate extends ILogin, IProfileUpdate {}
 
 export async function authenticate(body: IAuthenticate) {
   try {
-    const { data, status, statusText } = await apiStore.post<IToken>(API.auth.register, {
+    const { data, status, statusText } = await apiStore.post<IAuthToken>(API.auth.register, {
       ...body
     });
 
@@ -20,7 +18,9 @@ export async function authenticate(body: IAuthenticate) {
       throw new Error(`${status}: ${statusText}`);
     }
 
-    return { token: data.accessToken };
+    setSession({ accessToken: data.accessToken, refreshToken: data.refreshToken });
+    revalidatePath('/');
+    return { success: true };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error authenticate'));
   }

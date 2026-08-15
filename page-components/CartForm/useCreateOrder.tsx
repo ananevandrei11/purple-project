@@ -5,16 +5,14 @@ import { createOrder } from '@/actions/createOrder';
 import { login } from '@/actions/login';
 import { updateUser } from '@/actions/updateUser';
 import { useCartContext } from '@/context/cartContext';
-import { useSession } from '@/state/localStorage';
 import { getPriceWithDiscount } from '@/utils';
 import { FieldValues } from './schema';
 
-export function useCreateOrder() {
+export function useCreateOrder(isAuth: boolean) {
   const { state } = useCartContext();
-  const { addSession, session } = useSession();
   const { clearCart } = useCartContext();
 
-  const handleSendOrder = async (token: string) => {
+  const handleSendOrder = async () => {
     try {
       const payload = {
         items: state.items.map((item) => ({
@@ -23,7 +21,7 @@ export function useCreateOrder() {
           price: getPriceWithDiscount({ price: item.price, discount: item.discount })
         }))
       };
-      const orderRes = await createOrder({ items: payload, token });
+      const orderRes = await createOrder({ items: payload });
       toast.success('Заказ успешно оформлен');
       clearCart();
       return orderRes;
@@ -33,15 +31,14 @@ export function useCreateOrder() {
     }
   };
 
-  const handleUpdateUser = async ({ data, token }: { data: FieldValues; token: string }) => {
+  const handleUpdateUser = async ({ data }: { data: FieldValues }) => {
     try {
       await updateUser({
         body: {
           address: data.address,
           name: data.name,
           phone: data.phone
-        },
-        token
+        }
       });
     } catch (error: unknown) {
       toast.error(error instanceof Error ? error?.message : 'Не удалось обновить профиль');
@@ -50,29 +47,26 @@ export function useCreateOrder() {
   };
 
   const handleCreateOrder = async (data: FieldValues) => {
-    const token = session?.token;
     let order = null;
 
-    if (token) {
-      await handleUpdateUser({ data, token });
-      order = await handleSendOrder(token);
+    if (isAuth) {
+      await handleUpdateUser({ data });
+      order = await handleSendOrder();
       return order;
     }
 
     try {
-      const loginRes = await login({ email: data.email, password: data.password });
-      addSession({ token: loginRes.token, name: data.name, email: data.email });
-      await handleUpdateUser({ data, token: loginRes.token });
-      order = await handleSendOrder(loginRes.token);
+      await login({ email: data.email, password: data.password });
+      await handleUpdateUser({ data });
+      order = await handleSendOrder();
       return order;
     } catch {
       //
     }
 
     try {
-      const authRes = await authenticate(data);
-      addSession({ token: authRes.token, name: data.name, email: data.email });
-      order = await handleSendOrder(authRes.token);
+      await authenticate(data);
+      order = await handleSendOrder();
       return order;
     } catch (error: unknown) {
       toast.error(error instanceof Error ? error?.message : 'Не удалось авторизоваться');

@@ -12,6 +12,36 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U root -d api_demo']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: postgresql://root:admin@db:5432/api_demo?schema=public
+    container_name: purple_api
+    ports:
+      - 4000:4000
+    environment:
+      DATABASE_URL: postgresql://root:admin@db:5432/api_demo?schema=public
+      NODE_ENV: development
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+      - ./prisma:/app/prisma
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    command: npm run dev:docker
 
   # https://www.datacamp.com/tutorial/minio-docker
   minio:

@@ -34,16 +34,19 @@ export const getAccessTokenData = ({ secret, user }: { secret: string; user: Use
   return accessToken;
 };
 
-export const checkAccessToken = (request: FastifyRequest, reply: FastifyReply): jwt.JwtPayload => {
-  const headers = request.headers;
-  const token = headers.authorization?.split(' ')[1];
+export const requireAuth = async (request: FastifyRequest, reply: FastifyReply) => {
+  const token = request.headers.authorization?.split(' ')[1];
   if (!token) {
-    return reply.status(401).send({ message: 'Authentication required' });
+    return reply.code(401).send({ code: 'NO_TOKEN' });
   }
-  const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || '');
-  if (typeof decodedToken === 'string') {
-    return reply.status(401).send({ message: 'Authentication required' });
+  try {
+    const decoded = jwt.verify(token, request.server.config.ACCESS_TOKEN_SECRET);
+    if (typeof decoded === 'string' || !decoded.sub) {
+      return reply.code(401).send({ code: 'INVALID_TOKEN' });
+    }
+    request.user = { id: decoded.sub };
+  } catch (e) {
+    const code = e instanceof jwt.TokenExpiredError ? 'TOKEN_EXPIRED' : 'INVALID_TOKEN';
+    return reply.code(401).send({ code });
   }
-
-  return decodedToken;
 };

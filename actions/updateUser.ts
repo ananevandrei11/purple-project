@@ -1,16 +1,15 @@
 'use server';
-import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
 import { IProfile, IProfileUpdate } from '@/interfaces';
+import { authFetch } from '@/state/auth/authFetch';
 
-export async function updateUser({ body, token }: { body: IProfileUpdate; token: string }) {
+export async function updateUser({ body }: { body: IProfileUpdate }) {
   try {
-    console.log(API.user.update);
-    const { data, status, statusText } = await apiStore.patch<IProfile>(API.user.update, body, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    const { data, status, statusText } = await authFetch<IProfile>({
+      method: 'PATCH',
+      url: API.user.update,
+      data: body
     });
 
     if (status >= 400) {

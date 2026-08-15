@@ -2,6 +2,7 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import { fastifyCookie } from '@fastify/cookie';
 import fastifyEnv from '@fastify/env';
+import rateLimit from '@fastify/rate-limit';
 
 import { products } from './routes/products';
 import { user } from './routes/user';
@@ -15,13 +16,16 @@ declare module 'fastify' {
       NODE_ENV: string;
     };
   }
+  interface FastifyRequest {
+    user?: { id: string };
+  }
 }
 
 const fastify = Fastify({
   logger: true
 });
 
-fastify.register(fastifyEnv, {
+await fastify.register(fastifyEnv, {
   schema: {
     type: 'object',
     required: ['ACCESS_TOKEN_SECRET', 'SALT_SESSION'],
@@ -37,14 +41,17 @@ fastify.register(fastifyEnv, {
 fastify.register(fastifyCookie);
 fastify.register(cors, {
   origin: 'http://localhost:3000',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  credentials: true
 });
+fastify.register(rateLimit, { global: false });
+
 fastify.get('/health', async () => ({ status: 'ok' }));
 fastify.register(products);
 fastify.register(user);
 fastify.register(order);
 
-fastify.listen({ port: 4000, host: 'localhost' }, function (err, address) {
+fastify.listen({ port: 4000, host: '0.0.0.0' }, function (err, address) {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

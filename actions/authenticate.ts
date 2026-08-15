@@ -4,6 +4,7 @@ import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
 import { IAuthToken, ILogin, IProfileUpdate } from '@/interfaces';
 import { setSession } from '@/state/auth/session';
+import { revalidatePath } from 'next/cache';
 
 interface IAuthenticate extends ILogin, IProfileUpdate {}
 
@@ -18,6 +19,7 @@ export async function authenticate(body: IAuthenticate) {
     }
 
     setSession({ accessToken: data.accessToken, refreshToken: data.refreshToken });
+    revalidatePath('/');
     return { success: true };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error authenticate'));

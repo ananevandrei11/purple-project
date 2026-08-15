@@ -11,6 +11,7 @@ export const API = {
   auth: {
     register: '/auth/register',
     login: '/auth/login',
+    logout: '/auth/logout',
     restore: '/auth/restore',
     refresh: '/auth/refresh'
   },

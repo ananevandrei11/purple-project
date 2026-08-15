@@ -9,9 +9,7 @@ export async function updateUser({ body }: { body: IProfileUpdate }) {
     const { data, status, statusText } = await authFetch<IProfile>({
       method: 'PATCH',
       url: API.user.update,
-      data: {
-        body
-      }
+      data: body
     });
 
     if (status >= 400) {

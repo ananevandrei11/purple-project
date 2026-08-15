@@ -1,4 +1,5 @@
 'use server';
+import { revalidatePath } from 'next/cache';
 import { apiStore } from '@/config/apiStore';
 import { API } from '@/helpers/api';
 import { handlerError } from '@/helpers/handlerError';
@@ -16,6 +17,7 @@ export async function login(body: ILogin) {
     }
 
     setSession({ accessToken: data.accessToken, refreshToken: data.refreshToken });
+    revalidatePath('/');
     return { success: true };
   } catch (error: unknown) {
     throw new Error(handlerError(error, 'Error login'));

@@ -9,9 +9,7 @@ export async function createOrder({ items }: { items: IOrderItemList }) {
     const { data, status, statusText } = await authFetch<IOrder>({
       method: 'POST',
       url: API.order.create,
-      data: {
-        items
-      }
+      data: items
     });
 
     if (status >= 400) {
